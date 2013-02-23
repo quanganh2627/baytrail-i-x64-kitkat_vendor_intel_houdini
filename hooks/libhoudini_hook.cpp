@@ -158,7 +158,7 @@ void dvmHookPlatformInvoke(void* pEnv, void* clazz, int argInfo, int argc,
         gHoudini->dvm2hdNativeMethodHelper(false, func, retType, pReturn, dstArg,
             types, (const void**)values);
     else
-        LOGE("Houdini has not been initialized!");
+        ALOGE("Houdini has not been initialized!");
 }
 
 
@@ -218,7 +218,7 @@ void* hookDlsym(bool useHoudini, void* handle, const char* symbol) {
         if (gHoudini)
             return gHoudini->dvm2hdDlsym(handle, symbol);
         else {
-            LOGE("Houdini has not been initialized!");
+            ALOGE("Houdini has not been initialized!");
             return NULL;
         }
     } else
@@ -236,7 +236,7 @@ int hookJniOnload(bool useHoudini, void* func, void* jniVm, void* arg) {
             gHoudini->dvm2hdNativeMethodHelper(true, func, 'I', (void*)&version,
                 2, NULL, argv);
         else
-            LOGE("Houdini has not been initialized!");
+            ALOGE("Houdini has not been initialized!");
         return version;
     } else {
         return (*(OnLoadFunc)func)(jniVm, NULL);
@@ -253,7 +253,7 @@ void hookCreateActivity(bool useHoudini, void* createActivityFunc, void* activit
             gHoudini->androidrt2hdCreateActivity(createActivityFunc, activity,
                 houdiniActivity, savedState, savedStateSize);
         else
-            LOGE("Houdini has not been initialized!");
+            ALOGE("Houdini has not been initialized!");
     } else {
         (*(CreateActivityFunc)createActivityFunc)(activity, savedState, savedStateSize);
     }
