@@ -35,7 +35,7 @@ HOUDINI_ARM_PREBUILTS_DIR (defined in device/intel/common/common.mk) directory u
 intel external release code base.(You can also refer to the README under patches/ to understand details
 about how to build ARM prebuilt libraries in build_arm_lib.sh script.)
 
-cd ~/intel_jb/device/intel/houdini/patches
+cd ~/intel_jb/vendor/intel/houdini/patches
 ./build_arm_lib.sh ~/google_aosp ~/intel_jb/
 
 (wait for the finish of script build_arm_lib.sh)

@@ -52,8 +52,8 @@ done
 
 # Applying patches:
 # (Discard local changes if there are)
-if [ -d $x86_android_src_root/device/intel/houdini ]; then
-    prefix=$x86_android_src_root/device/intel/houdini/patches
+if [ -d $x86_android_src_root/vendor/intel/houdini ]; then
+    prefix=$x86_android_src_root/vendor/intel/houdini/patches
 fi
 cd bionic && git checkout . && git apply $prefix/0001-bionic-build.patch && cd -
 cd build && git checkout . && git apply $prefix/0001-build-tls-no-thumb.patch && cd -
@@ -148,7 +148,7 @@ fi
 
 src_dir=$arm_android_src_root/out/target/product/generic/system
 dst_dir=$x86_android_src_root/$HOUDINI_ARM_PREBUILTS_DIR
-systemstub=$x86_android_src_root/device/intel/PRIVATE/systemstub
+systemstub=$x86_android_src_root/vendor/intel/PRIVATE/systemstub
 
 if [ -d $systemstub ]; then
     rm -rf $systemstub
