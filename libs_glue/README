@@ -1,0 +1,16 @@
+This folder includes prebuilt ARM glue libraries:
+
+.
+|-- README
+|-- libEGL_glue.so
+|-- libGLESv1_CM_glue.so
+|-- libGLESv2_glue.so
+|-- libOpenMAXAL_glue.so
+|-- libOpenSLES_glue.so
+|-- libandroid_glue.so
+|-- libc_glue.so
+|-- libdl_glue.so
+|-- libjnigraphics_glue.so
+`-- libm_glue.so
+
+0 directories, 11 files

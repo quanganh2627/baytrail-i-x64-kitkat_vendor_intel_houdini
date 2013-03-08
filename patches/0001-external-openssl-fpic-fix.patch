@@ -1,0 +1,38 @@
+diff --git a/crypto/bn/asm/armv4-gf2m.s b/crypto/bn/asm/armv4-gf2m.s
+index 2c209e1..9a07533 100644
+--- a/crypto/bn/asm/armv4-gf2m.s
++++ b/crypto/bn/asm/armv4-gf2m.s
+@@ -1,5 +1,8 @@
+ #include "arm_arch.h"
+ 
++@ define __ARM_ARCH__<7 to workaround -Bdynamic build issue
++#define __ARM_ARCH__ 6
++
+ .text
+ .code	32
+ 
+diff --git a/crypto/sha/asm/sha512-armv4.s b/crypto/sha/asm/sha512-armv4.s
+index 5730192..9fd535f 100644
+--- a/crypto/sha/asm/sha512-armv4.s
++++ b/crypto/sha/asm/sha512-armv4.s
+@@ -1,4 +1,8 @@
+ #include "arm_arch.h"
++
++@ define __ARM_ARCH__<7 to workaround -Bdynamic build issue
++#define __ARM_ARCH__ 6
++
+ #ifdef __ARMEL__
+ # define LO 0
+ # define HI 4
+@@ -55,9 +59,11 @@ WORD64(0x3c9ebe0a,0x15c9bebc, 0x431d67c4,0x9c100d4c)
+ WORD64(0x4cc5d4be,0xcb3e42b6, 0x597f299c,0xfc657e2a)
+ WORD64(0x5fcb6fab,0x3ad6faec, 0x6c44198c,0x4a475817)
+ .size	K512,.-K512
++#if __ARM_ARCH__>=7
+ .LOPENSSL_armcap:
+ .word	OPENSSL_armcap_P-sha512_block_data_order
+ .skip	32-4
++#endif
+ 
+ .global	sha512_block_data_order
+ .type	sha512_block_data_order,%function

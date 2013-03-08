@@ -1,0 +1,215 @@
+Copyright (c) (2012), Intel Corporation.
+
+This Houdini binaries ("Software") is furnished under license and may only be used or copied in accordance with the terms of that license. No license, express or implied, by estoppel or otherwise, to any intellectual property rights is granted by this document. The Software is subject to change without notice, and should not be construed as a commitment by Intel Corporation to market, license, sell or support any product or technology. Unless otherwise provided for in the license under which this Software is provided, the Software is provided AS IS, with no warranties of any kind, express or implied. Except as expressly permitted by the Software license, neither Intel Corporation nor its suppliers assumes any responsibility or liability for any errors or inaccuracies that may appear herein. Except as expressly permitted by the Software license, no part of the Software may be reproduced, stored in a retrieval system, transmitted in any form,or distributed by any means without the express written consent of Intel Corporation.
+
+Patches to build prebuilt ARM Android libraries.
+===============================================
+
+This folder includes patches and script to build the prebuilt ARM
+libraries:
+
+./
+|-- README
+|-- build_arm_lib.sh
+|-- 0001-bionic-build.patch
+|-- 0001-build-tls-no-thumb.patch
+|-- 0001-dalvik-fpic-fix.patch
+|-- 0001-external-openssl-fpic-fix.patch
+`-- 0001-external-tremolo-fpic-fix.patch
+
+0 directories, 7 files
+
+--
+
+To generate the required ARM libraries with these patches, basically
+it includes the following 5 steps:
+
+1. Download Android source code:
+
+Please download Android source code from Android offical website:
+
+http://source.android.com/source/downloading.html
+
+(On Linux, the following steps (2 ~ 6) can also be done using the 
+build_arm_lib.sh script. Please read that script for its usage.)
+
+2. Checkout the tag version android-4.2.1_r1:
+
+These patches are against Android 4.2.1_r1. After downloaded the
+source code. Please checkout the tag version android-4.2.1_r1.
+
+----------------------------------------------------------------------------------
+
+#!/bin/bash
+
+cd <arm-android-src-root>
+for p in `repo list | awk '{ print $1 }'`; do
+    cd $p && git checkout android-4.2.1_r1 && cd -
+done
+
+----------------------------------------------------------------------------------
+
+3. Applying patches:
+
+Please apply the following patches before your build:
+
+----------------------------------------------------------------------------------
+
+cd <arm-android-src-root>
+cd bionic && git checkout . && git apply $prefix/0001-bionic-build.patch && cd -
+cd build && git checkout . && git apply $prefix/0001-build-tls-no-thumb.patch && cd -
+cd dalvik && git checkout . && git apply $prefix/0001-dalvik-fpic-fix.patch && cd -
+cd external/openssl && git checkout . && git apply $prefix/0001-external-openssl-fpic-fix.patch && cd -
+cd external/tremolo && git checkout . && git apply $prefix/0001-external-tremolo-fpic-fix.patch && cd -
+
+----------------------------------------------------------------------------------
+
+4. Build ARM libraries:
+
+Only part of ARM Android libraries are required. Below is the command
+to build the required libraries:
+
+----------------------------------------------------------------------------------
+
+cd <arm-android-src-root>
+source ./build/envsetup.sh
+lunch generic-eng
+make clean
+make -j4 libETC1 \
+         libandroidfw \
+         libandroid_runtime \
+         libaudioutils \
+         libbinder \
+         libc \
+         libcamera_client \
+         libcorkscrew \
+         libcrypto \
+         libcutils \
+         libdl \
+         libdrmframework \
+         libdvm \
+         libemoji \
+         libexpat \
+         libfilterfw \
+         libfilterpack_imageproc \
+         libgabi++ \
+         libgccdemangle \
+         libgui \
+         libhardware \
+         libhardware_legacy \
+         libharfbuzz \
+         libhwui \
+         libicui18n \
+         libicuuc \
+         libjpeg \
+         liblog \
+         libm \
+         libmedia \
+         libmedia_native \
+         libnativehelper \
+         libnetutils \
+         libnfc_ndef \
+         libpixelflinger \
+         libskia \
+         libsonivox \
+         libspeexresampler \
+         libsqlite \
+         libssl \
+         libstagefright \
+         libstagefright_foundation \
+         libstdc++ \
+         libstlport \
+         libsurfaceflinger \
+         libsync \
+         libui \
+         libusbhost \
+         libutils \
+         libvorbisidec \
+         libwpa_client \
+         libz \
+         linker
+
+----------------------------------------------------------------------------------
+
+5. Copy the generated ARM libraries to HOUDINI_ARM_PREBUILTS_DIR
+
+----------------------------------------------------------------------------------
+
+#!/bin/bash
+
+src_dir=<arm-android-src-root>/out/target/product/generic/system
+dst_dir=<x86-android-src-root>/$HOUDINI_ARM_PREBUILTS_DIR
+
+if [ ! -d $dst_dir ]; then
+    mkdir -p $dst_dir
+fi
+
+cp -f \
+       $src_dir/lib/libETC1.so \
+       $src_dir/lib/libandroidfw.so \
+       $src_dir/lib/libandroid_runtime.so \
+       $src_dir/lib/libaudioutils.so \
+       $src_dir/lib/libbinder.so \
+       $src_dir/lib/libc.so \
+       $src_dir/lib/libcamera_client.so \
+       $src_dir/lib/libcorkscrew.so \
+       $src_dir/lib/libcrypto.so \
+       $src_dir/lib/libcutils.so \
+       $src_dir/lib/libdl.so \
+       $src_dir/lib/libdrmframework.so \
+       $src_dir/lib/libdvm.so \
+       $src_dir/lib/libemoji.so \
+       $src_dir/lib/libexpat.so \
+       $src_dir/lib/libfilterfw.so \
+       $src_dir/lib/libfilterpack_imageproc.so \
+       $src_dir/lib/libgabi++.so \
+       $src_dir/lib/libgccdemangle.so \
+       $src_dir/lib/libgui.so \
+       $src_dir/lib/libhardware.so \
+       $src_dir/lib/libhardware_legacy.so \
+       $src_dir/lib/libharfbuzz.so \
+       $src_dir/lib/libhwui.so \
+       $src_dir/lib/libicui18n.so \
+       $src_dir/lib/libicuuc.so \
+       $src_dir/lib/libjpeg.so \
+       $src_dir/lib/liblog.so \
+       $src_dir/lib/libm.so \
+       $src_dir/lib/libmedia.so \
+       $src_dir/lib/libmedia_native.so \
+       $src_dir/lib/libnativehelper.so \
+       $src_dir/lib/libnetutils.so \
+       $src_dir/lib/libnfc_ndef.so \
+       $src_dir/lib/libpixelflinger.so \
+       $src_dir/lib/libskia.so \
+       $src_dir/lib/libsonivox.so \
+       $src_dir/lib/libspeexresampler.so \
+       $src_dir/lib/libsqlite.so \
+       $src_dir/lib/libssl.so \
+       $src_dir/lib/libstagefright.so \
+       $src_dir/lib/libstagefright_foundation.so \
+       $src_dir/lib/libstdc++.so \
+       $src_dir/lib/libstlport.so \
+       $src_dir/lib/libsurfaceflinger.so \
+       $src_dir/lib/libsync.so \
+       $src_dir/lib/libui.so \
+       $src_dir/lib/libusbhost.so \
+       $src_dir/lib/libutils.so \
+       $src_dir/lib/libvorbisidec.so \
+       $src_dir/lib/libwpa_client.so \
+       $src_dir/lib/libz.so \
+       $src_dir/bin/linker \
+       $dst_dir
+
+----------------------------------------------------------------------------------
+
+6. Mark prebuilt done
+
+Please create a stamp-prebuilt-done file in the HOUDINI_ARM_PREBUILTS_DIR folder to mark the
+arm prebuilt finished.
+
+----------------------------------------------------------------------------------
+
+cd HOUDINI_ARM_PREBUILTS_DIR
+touch stamp-prebuilt-done
+
+----------------------------------------------------------------------------------

@@ -1,0 +1,29 @@
+diff --git a/Android.mk b/Android.mk
+index 9e3a0a0..c7fa65a 100644
+--- a/Android.mk
++++ b/Android.mk
+@@ -16,18 +16,19 @@ LOCAL_SRC_FILES = \
+ 	Tremolo/treminfo.c \
+ 	Tremolo/vorbisfile.c
+ 
+-ifeq ($(TARGET_ARCH),arm)
+-LOCAL_SRC_FILES += \
++#Force libvorbisidec to be built with ONLY_C
++#ifeq ($(TARGET_ARCH),arm)
++#LOCAL_SRC_FILES += \
+ 	Tremolo/bitwiseARM.s \
+ 	Tremolo/dpen.s \
+ 	Tremolo/floor1ARM.s \
+ 	Tremolo/mdctARM.s
+-LOCAL_CFLAGS += \
++#LOCAL_CFLAGS += \
+     -D_ARM_ASSEM_
+-else
++#else
+ LOCAL_CFLAGS += \
+     -DONLY_C
+-endif
++#endif
+ LOCAL_CFLAGS+= -O2
+ 
+ LOCAL_C_INCLUDES:= \

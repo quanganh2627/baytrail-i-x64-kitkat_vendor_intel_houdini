@@ -1,0 +1,13 @@
+diff --git a/libdl/Android.mk b/libdl/Android.mk
+index e6c6bf4..3d30030 100644
+--- a/libdl/Android.mk
++++ b/libdl/Android.mk
+@@ -27,6 +27,8 @@ LOCAL_SRC_FILES:= libdl.c
+ LOCAL_MODULE:= libdl
+ LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
+ 
++LOCAL_ARM_MODE := arm
++
+ # NOTE: libdl needs __aeabi_unwind_cpp_pr0 from libgcc.a but libgcc.a needs a
+ # few symbols from libc. Using --no-undefined here results in having to link
+ # against libc creating a circular dependency which is removed and we end up
