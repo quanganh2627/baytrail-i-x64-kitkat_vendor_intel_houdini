@@ -31,7 +31,7 @@ step2: Assume the intel external release code base directory is ~/intel_jb, do t
 commands to run the script of building arm libraries. The script need two parameters,one for
 google aosp code base directory in step1, one for intel external release code base directory. It will
 build arm libraries from google aosp code base and copy into 
-HOUDINI_ARM_PREBUILTS_DIR (defined in vendor/intel/common/common.mk) directory under
+HOUDINI_ARM_PREBUILTS_DIR (defined in device/intel/common/common.mk) directory under
 intel external release code base.(You can also refer to the README under patches/ to understand details
 about how to build ARM prebuilt libraries in build_arm_lib.sh script.)
 

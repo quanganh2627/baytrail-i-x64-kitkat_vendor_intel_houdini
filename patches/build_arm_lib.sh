@@ -139,7 +139,7 @@ fi
 #
 # HOUDINI_ARM_PREBUILTS_DIR should be defined in COMMON_MK
 # if not defined, then exit
-COMMON_MK=vendor/intel/common/common.mk
+COMMON_MK=device/intel/common/common.mk
 HOUDINI_ARM_PREBUILTS_DIR=`cat $x86_android_src_root/$COMMON_MK | grep "HOUDINI_ARM_PREBUILTS_DIR :=" | awk '{print $3}'`
 if [ "x$HOUDINI_ARM_PREBUILTS_DIR" = "x" ]; then
     echo "HOUDINI_ARM_PREBUILTS_DIR not defined in $COMMON_MK. Exit"
