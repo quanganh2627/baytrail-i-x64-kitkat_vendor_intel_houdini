@@ -44,10 +44,10 @@ if [ ! -d $arm_android_src_root ] || [ ! -d $x86_android_src_root ]; then
     exit -1
 fi
 
-# Checkout the tag version android-4.2.1_r1:
+# Checkout the tag version android-4.2.2_r1:
 pushd $arm_android_src_root
 for p in `repo list | awk '{ print $1 }'`; do
-    cd $p ; git checkout android-4.2.1_r1 ; cd -
+    cd $p ; git checkout android-4.2.2_r1 ; cd -
 done
 
 # Applying patches:
@@ -60,6 +60,10 @@ cd build && git checkout . && git apply $prefix/0001-build-tls-no-thumb.patch &&
 cd dalvik && git checkout . && git apply $prefix/0001-dalvik-fpic-fix.patch && cd -
 cd external/openssl && git checkout . && git apply $prefix/0001-external-openssl-fpic-fix.patch && cd -
 cd external/tremolo && git checkout . && git apply $prefix/0001-external-tremolo-fpic-fix.patch && cd -
+cd prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.6/ && git checkout .
+cp arm-linux-androideabi/bin/ld.bfd arm-linux-androideabi/bin/ld
+cp bin/arm-linux-androideabi-ld.bfd bin/arm-linux-androideabi-ld
+cd -
 
 if [ "$?" != "0" ]; then
     echo "Patch failure!"

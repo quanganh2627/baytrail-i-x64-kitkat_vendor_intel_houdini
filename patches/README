@@ -33,10 +33,10 @@ http://source.android.com/source/downloading.html
 (On Linux, the following steps (2 ~ 6) can also be done using the 
 build_arm_lib.sh script. Please read that script for its usage.)
 
-2. Checkout the tag version android-4.2.1_r1:
+2. Checkout the tag version android-4.2.2_r1:
 
-These patches are against Android 4.2.1_r1. After downloaded the
-source code. Please checkout the tag version android-4.2.1_r1.
+These patches are against Android 4.2.2_r1. After downloaded the
+source code. Please checkout the tag version android-4.2.2_r1.
 
 ----------------------------------------------------------------------------------
 
@@ -44,7 +44,7 @@ source code. Please checkout the tag version android-4.2.1_r1.
 
 cd <arm-android-src-root>
 for p in `repo list | awk '{ print $1 }'`; do
-    cd $p && git checkout android-4.2.1_r1 && cd -
+    cd $p && git checkout android-4.2.2_r1 && cd -
 done
 
 ----------------------------------------------------------------------------------
@@ -61,6 +61,10 @@ cd build && git checkout . && git apply $prefix/0001-build-tls-no-thumb.patch &&
 cd dalvik && git checkout . && git apply $prefix/0001-dalvik-fpic-fix.patch && cd -
 cd external/openssl && git checkout . && git apply $prefix/0001-external-openssl-fpic-fix.patch && cd -
 cd external/tremolo && git checkout . && git apply $prefix/0001-external-tremolo-fpic-fix.patch && cd -
+cd prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.6/ && git checkout .
+cp arm-linux-androideabi/bin/ld.bfd arm-linux-androideabi/bin/ld
+cp bin/arm-linux-androideabi-ld.bfd bin/arm-linux-androideabi-ld
+cd -
 
 ----------------------------------------------------------------------------------
 

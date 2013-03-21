@@ -54,6 +54,7 @@ LIBS_TRL := liblog.so \
 			libmedia.so \
 			libnativehelper.so \
 			libpixelflinger.so \
+			libskia.so \
 			libsqlite.so \
 			libssl.so \
 			libstagefright.so \
@@ -80,7 +81,6 @@ LIBS_PCH := libandroidfw.so \
 			libmedia_native.so \
 			libnetutils.so \
 			libnfc_ndef.so \
-			libskia.so \
 			libsonivox.so \
 			libspeexresampler.so \
 			libstlport.so \

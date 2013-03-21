@@ -24,7 +24,7 @@ you local development host directory ex: ~/google_aosp .
 
 mkdir google_aosp
 cd google_aosp
-repo init -u https://android.googlesource.com/platform/manifest -b android-4.2.1_r1
+repo init -u https://android.googlesource.com/platform/manifest -b android-4.2.2_r1
 repo sync
 
 step2: Assume the intel external release code base directory is ~/intel_jb, do the following

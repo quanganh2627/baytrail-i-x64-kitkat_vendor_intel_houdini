@@ -12,10 +12,26 @@ index 791623b..c4d81c8 100644
  # Read the values from something like TARGET_arm_CFLAGS or
  # TARGET_thumb_CFLAGS.  HOST_(arm|thumb)_CFLAGS values aren't
 diff --git a/core/combo/TARGET_linux-arm.mk b/core/combo/TARGET_linux-arm.mk
-index 854037d..6fa36ed 100644
+index 854037d..e05debe 100644
 --- a/core/combo/TARGET_linux-arm.mk
 +++ b/core/combo/TARGET_linux-arm.mk
-@@ -99,7 +99,7 @@ ifeq ($(FORCE_ARM_DEBUGGING),true)
+@@ -54,13 +54,12 @@ ifneq ($(wildcard $(TARGET_TOOLS_PREFIX)gcc$(HOST_EXECUTABLE_SUFFIX)),)
+     TARGET_CXX := $(TARGET_TOOLS_PREFIX)g++$(HOST_EXECUTABLE_SUFFIX)
+     TARGET_AR := $(TARGET_TOOLS_PREFIX)ar$(HOST_EXECUTABLE_SUFFIX)
+     TARGET_OBJCOPY := $(TARGET_TOOLS_PREFIX)objcopy$(HOST_EXECUTABLE_SUFFIX)
+-    TARGET_LD := $(TARGET_TOOLS_PREFIX)ld$(HOST_EXECUTABLE_SUFFIX)
++    TARGET_LD := $(TARGET_TOOLS_PREFIX)ld.bfd$(HOST_EXECUTABLE_SUFFIX)
+     TARGET_STRIP := $(TARGET_TOOLS_PREFIX)strip$(HOST_EXECUTABLE_SUFFIX)
+     ifeq ($(TARGET_BUILD_VARIANT),user)
+         TARGET_STRIP_COMMAND = $(TARGET_STRIP) --strip-all $< -o $@
+     else
+-        TARGET_STRIP_COMMAND = $(TARGET_STRIP) --strip-all $< -o $@ && \
+-            $(TARGET_OBJCOPY) --add-gnu-debuglink=$< $@
++        TARGET_STRIP_COMMAND = $(TARGET_STRIP) --strip-all $< -o $@
+     endif
+ endif
+ 
+@@ -99,7 +98,7 @@ ifeq ($(FORCE_ARM_DEBUGGING),true)
  endif
  
  TARGET_GLOBAL_CFLAGS += \
@@ -24,7 +40,16 @@ index 854037d..6fa36ed 100644
  			-ffunction-sections \
  			-fdata-sections \
  			-funwind-tables \
-@@ -151,8 +151,6 @@ else
+@@ -139,6 +138,8 @@ TARGET_GLOBAL_LDFLAGS += \
+ 			-Wl,-z,now \
+ 			-Wl,--warn-shared-textrel \
+ 			-Wl,--icf=safe \
++			-Wl,--traditional-format \
++			-Wl,--allow-shlib-undefined \
+ 			$(arch_variant_ldflags)
+ 
+ # We only need thumb interworking in cases where thumb support
+@@ -151,8 +152,6 @@ else
  TARGET_GLOBAL_CFLAGS += -mno-thumb-interwork
  endif
  
@@ -33,7 +58,7 @@ index 854037d..6fa36ed 100644
  # More flags/options can be added here
  TARGET_RELEASE_CFLAGS := \
  			-DNDEBUG \
-@@ -251,7 +249,7 @@ define transform-o-to-shared-lib-inner
+@@ -251,7 +250,7 @@ define transform-o-to-shared-lib-inner
  $(hide) $(PRIVATE_CXX) \
  	-nostdlib -Wl,-soname,$(notdir $@) \
  	-Wl,--gc-sections \
