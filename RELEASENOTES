@@ -2,12 +2,19 @@ Copyright (c) (2012), Intel Corporation.
 
 This Houdini binaries ("Software") is furnished under license and may only be used or copied in accordance with the terms of that license. No license, express or implied, by estoppel or otherwise, to any intellectual property rights is granted by this document. The Software is subject to change without notice, and should not be construed as a commitment by Intel Corporation to market, license, sell or support any product or technology. Unless otherwise provided for in the license under which this Software is provided, the Software is provided AS IS, with no warranties of any kind, express or implied. Except as expressly permitted by the Software license, neither Intel Corporation nor its suppliers assumes any responsibility or liability for any errors or inaccuracies that may appear herein. Except as expressly permitted by the Software license, no part of the Software may be reproduced, stored in a retrieval system, transmitted in any form,or distributed by any means without the express written consent of Intel Corporation.
 
+Apr-12-2013  RELEASE VERSION: Houdini 3.3.0.43143 Golden Release
+Feature Enhancement:
+    Improved non-NDK API handling in libskia.so to better support QQ Browser.
+    Fixed a memory accessing permission bug exposed by the introducing of PAE support in R4.2 image. Application Enigmatic Collector's, Nemo's Reef and netflix passed after the fix.
+
 Mar-21-2013  RELEASE VERSION: Houdini 3.3.0.43074 WW12 weekly Release
 Bugs fixed:
-    88345, 91840
+    88345, 89466, 91840
 Feature Enhancement:
     Rebased ARM library to AOSP 4.2.2_r1
     Improved non-NDK API support to pass application "Space Hunter"(BZ88345), "QQ Browser"(BZ91840)
+    Added support for a special usage of global variable in native code to pass application "SG:deadzone"(BZ89466)
+    Updated ARM libraries to turn off combine-duplicated-entries feature that will improve Houdini virtual gate performance.
 
 Mar-5-2013  RELEASE VERSION: Houdini 3.2.0.43024 Golden Release
 Bugs fixed:
