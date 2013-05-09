@@ -175,7 +175,7 @@ elif [[ $1 = "pst" ]]; then
     library=`basename $library_original`
     cp $library_original .
 
-    $objdump_cmd -T $library | grep -w DF | grep "\.text" | awk '{print $NF}' > $library.tmp
+    $objdump_cmd -T $library | grep -e "DF .text" -e "D  .text" | awk '{print $NF}' > $library.tmp
     sym_size=`wc -c $library_symbol | awk '{print $1}'`
     if [[ $sym_size -ne 0 ]]; then
         awk 'NR==FNR{a[$1]=1} NR>FNR{if(a[$NF]!=1) print $1}' $library_symbol $library.tmp > $library.filt
