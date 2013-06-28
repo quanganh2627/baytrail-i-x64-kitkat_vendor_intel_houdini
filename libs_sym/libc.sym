@@ -85,7 +85,6 @@ pthread_attr_getstack
 pthread_create
 pthread_detach
 pthread_exit
-pthread_getspecific
 pthread_join
 pthread_key_create
 pthread_key_delete
@@ -119,3 +118,5 @@ ungetc
 ungetwc
 unlockpt
 valloc
+dlindependent_calloc
+dlindependent_comalloc
