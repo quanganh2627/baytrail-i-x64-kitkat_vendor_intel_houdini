@@ -10,6 +10,7 @@ __pthread_cleanup_pop
 __pthread_cleanup_push
 __sched_getaffinity
 __sfp
+__sinit
 _pthread_internal_add
 abort
 calloc
