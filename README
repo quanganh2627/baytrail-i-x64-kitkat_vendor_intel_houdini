@@ -8,37 +8,11 @@ source ISA emulation.
 
 This is the Houdini feature to enable Intel phone to execute applications
 compiled for other ISAs (say ARM). In order to setup this feature, please
-follow the instructions below to build the ARM prebuilt libraries.
-You can also refer to the README under patches/ to understand details
-about how to build ARM prebuilt libraries.
+make sure ARM prebuilt libraries are existed: HOUDINI/arm/.
 
-This feature will not be built into the phone without the prebuilt
-ARM libraries.
-======================================================================
+File HOUDINI/arm/stamp-prebuilt-done used to control building with/without
+Houdini feature. Remove this file will build image without Houdini feature.
 
-Steps to build ARM libraries for Houdini Feature
+You can also use option sys.app.houdini=on/off in system/build.prop to
+turn on/off Houdini feature. (Need reboot the device)
 
-step1: Dowanload google AOSP (android open source project) code base from google web site to
-you local development host directory ex: ~/google_aosp .
-(You can refer to http://source.android.com/source/downloading.html for download details)
-
-mkdir google_aosp
-cd google_aosp
-repo init -u https://android.googlesource.com/platform/manifest -b android-4.2.2_r1
-repo sync
-
-step2: Assume the intel external release code base directory is ~/intel_jb, do the following
-commands to run the script of building arm libraries. The script need two parameters,one for
-google aosp code base directory in step1, one for intel external release code base directory. It will
-build arm libraries from google aosp code base and copy into 
-HOUDINI_ARM_PREBUILTS_DIR (defined in vendor/intel/common/common.mk) directory under
-intel external release code base.(You can also refer to the README under patches/ to understand details
-about how to build ARM prebuilt libraries in build_arm_lib.sh script.)
-
-cd ~/intel_jb/device/intel/houdini/patches
-./build_arm_lib.sh ~/google_aosp ~/intel_jb/
-
-(wait for the finish of script build_arm_lib.sh)
-
-step3: Now that you have arm libraries in intel external release code base, just do the clean build
-on intel external release code base, you will have system image with Houdini feature enable.
