@@ -68,6 +68,7 @@ LIBS_TRL := liblog.so \
 LIBS_PCH := libandroidfw.so \
 			libaudioutils.so \
 			libcorkscrew.so \
+			libdbus.so \
 			libdvm.so \
 			libETC1.so \
 			libexpat.so \
