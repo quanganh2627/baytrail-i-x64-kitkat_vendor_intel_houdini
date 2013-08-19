@@ -14,7 +14,7 @@ ifeq ($(INTEL_HOUDINI),true)
 include $(CLEAR_VARS)
 
 product_path := $(TARGET_OUT_SHARED_LIBRARIES)
-prebuilt_path := $(LOCAL_PATH)/../../../$(HOUDINI_ARM_PREBUILTS_DIR)
+prebuilt_path := $(ANDROID_BUILD_TOP)/$(HOUDINI_ARM_PREBUILTS_DIR)
 syml_path := $(LOCAL_PATH)/libs_sym
 filter_path := $(syml_path)/filter
 glue_path := $(LOCAL_PATH)/libs_glue
