@@ -85,6 +85,7 @@ make -j4 libETC1 \
          libcorkscrew \
          libcrypto \
          libcutils \
+ libdbus \
          libdl \
          libdrmframework \
          libdvm \
@@ -169,6 +170,7 @@ cp -f \
        $src_dir/lib/libcorkscrew.so \
        $src_dir/lib/libcrypto.so \
        $src_dir/lib/libcutils.so \
+ $src_dir/lib/libdbus.so \
        $src_dir/lib/libdl.so \
        $src_dir/lib/libdrmframework.so \
        $src_dir/lib/libdvm.so \
