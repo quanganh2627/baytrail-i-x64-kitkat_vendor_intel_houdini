@@ -23,6 +23,7 @@ typedef int   (*HOUDINI_CREATE_ACTIVITY)(void*, void*, void*, void*, size_t);
 
 struct houdiniHook {
     /*libhoudini function pointers and init flag */
+    void*                       handle;
     HOUDINI_INIT                dvm2hdInit;
     HOUDINI_DLOPEN              dvm2hdDlopen;
     HOUDINI_DLSYM               dvm2hdDlsym;
@@ -67,6 +68,8 @@ bool houdiniHookInit() {
         if (handle == NULL) {
             return false;
         }
+        gHoudini->handle = handle; // Record down the handle in global data structure
+                                   // in case we need to close it later
         gHoudini->dvm2hdInit = (HOUDINI_INIT)dlsym(handle, "dvm2hdInit");
         if (gHoudini->dvm2hdInit == NULL) {
             ALOGE("Cannot find symbol dvm2hdInit, please check the "
@@ -185,6 +188,8 @@ static bool hookCheckABI2Header(const char *filename) {
     hdr = (Elf32_Ehdr*)header;
     if (hdr->e_machine == EM_ARM)
         return true;
+    else
+        return false;
 
 fail:
     if (fd != -1)
@@ -230,7 +235,7 @@ typedef int (*OnLoadFunc)(void*, void*);
 //Assume gHoudini has been initialized
 int hookJniOnload(bool useHoudini, void* func, void* jniVm, void* arg) {
     if (useHoudini) {
-        int version;
+        int version = 0;
         const void* argv[] = {jniVm, NULL};//{gDvm.jniVm, NULL};
         if (gHoudini)
             gHoudini->dvm2hdNativeMethodHelper(true, func, 'I', (void*)&version,

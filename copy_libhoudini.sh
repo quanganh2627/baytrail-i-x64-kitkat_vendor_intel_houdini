@@ -23,3 +23,18 @@ ln -sf libhoudini.so.${HOUDINI_VERSION} libhoudini.so
 
 ### Extra files needs to copy for houdini
 cd $TOP
+echo "Copying Houdini executables"
+mkdir -p ${PRODUCT_OUT}/system/bin/
+cp -f --remove-destination ${HOUDINI_PATH}/system/bin/houdini ${PRODUCT_OUT}/system/bin/
+cp -f --remove-destination ${HOUDINI_PATH}/system/bin/enable_houdini ${PRODUCT_OUT}/system/bin/
+cp -f --remove-destination ${HOUDINI_PATH}/system/bin/disable_houdini ${PRODUCT_OUT}/system/bin/
+
+echo "Copying Houdini arm libs"
+mkdir -p ${PRODUCT_OUT}/system/lib/arm/
+cp -f --remove-destination ${HOUDINI_PATH}/arm/*.so ${PRODUCT_OUT}/system/lib/arm/
+cp -f --remove-destination ${HOUDINI_PATH}/arm/linker ${PRODUCT_OUT}/system/lib/arm/
+
+echo "Copying Houdini misc files"
+cp -f --remove-destination ${HOUDINI_PATH}/system/lib/arm/check.xml ${PRODUCT_OUT}/system/lib/arm/
+cp -f --remove-destination ${HOUDINI_PATH}/system/lib/arm/cpuinfo ${PRODUCT_OUT}/system/lib/arm/
+cp -f --remove-destination ${HOUDINI_PATH}/system/lib/arm/cpuinfo.neon ${PRODUCT_OUT}/system/lib/arm/
