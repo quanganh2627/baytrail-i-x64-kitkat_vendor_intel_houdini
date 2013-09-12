@@ -174,7 +174,6 @@ $(linked_module): $(stamp_prebuilt_done) $(PROD_ARM_LIBS)
 include $(CLEAR_VARS)
 LOCAL_PREBUILT_EXECUTABLES := system/bin/houdini system/bin/enable_houdini system/bin/disable_houdini
 LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := EXECUTABLES
 LOCAL_MODULE_PATH := $(TARGET_OUT)/bin
 include $(BUILD_MULTI_PREBUILT)
 
