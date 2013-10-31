@@ -6,6 +6,8 @@ HOUDINI_VERSION=`strings ${HOUDINI_PATH}/system/lib/libhoudini.so | grep version
 PRODUCT_OUT=${TOP}/$2
 
 mkdir -p ${PRODUCT_OUT}/obj/SHARED_LIBRARIES/libhoudini_intermediates/LINKED/
+mkdir -p ${PRODUCT_OUT}/symbols/system/lib/
+mkdir -p ${PRODUCT_OUT}/system/lib/
 
 ### Copy libhoudini with version
 echo "Copying libhoudini"

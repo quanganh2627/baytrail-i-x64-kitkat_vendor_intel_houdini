@@ -71,3 +71,14 @@ PRODUCT_COPY_FILES += \
     ${HOUDINI_PATH}/arm/libvorbisidec.so:system/lib/arm/libvorbisidec.so \
     ${HOUDINI_PATH}/arm/libwpa_client.so:system/lib/arm/libwpa_client.so \
     ${HOUDINI_PATH}/arm/libz.so:system/lib/arm/libz.so \
+
+#"Copying Houdini executables"
+PRODUCT_COPY_FILES += \
+    ${HOUDINI_PATH}/system/bin/houdini:system/bin/houdini \
+    ${HOUDINI_PATH}/system/bin/enable_houdini:system/bin/enable_houdini \
+    ${HOUDINI_PATH}/system/bin/disable_houdini:system/bin/disable_houdini \
+
+#"Copying Houdini misc files"
+PRODUCT_COPY_FILES += \
+    ${HOUDINI_PATH}/system/lib/arm/cpuinfo:system/lib/arm/cpuinfo \
+    ${HOUDINI_PATH}/system/lib/arm/cpuinfo.neon:system/lib/arm/cpuinfo.neon \
