@@ -1,3 +1,21 @@
+#Houdini prebuilt
+HOUDINI_ARM_PREBUILTS_DIR := vendor/intel/houdini/arm
+houdini_prebuilt_stamp := $(HOUDINI_ARM_PREBUILTS_DIR)/stamp-prebuilt-done
+houdini_prebuilt_done := $(wildcard $(houdini_prebuilt_stamp))
+
+ifneq ($(houdini_prebuilt_done),)
+INTEL_HOUDINI := true
+#Houdini
+PRODUCT_PACKAGES += libhoudini \
+    houdini \
+    enable_houdini \
+    disable_houdini \
+    check.xml \
+    cpuinfo \
+    cpuinfo.neon
+
+#houdini arm libraries
+
 ### Extra files needs to copy for houdini
 HOUDINI_PATH := vendor/intel/houdini
 #"Copying Houdini arm libs"
@@ -90,3 +108,5 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     ${HOUDINI_PATH}/system/lib/arm/cpuinfo:system/lib/arm/cpuinfo \
     ${HOUDINI_PATH}/system/lib/arm/cpuinfo.neon:system/lib/arm/cpuinfo.neon \
+
+endif
