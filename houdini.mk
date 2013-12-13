@@ -109,4 +109,7 @@ PRODUCT_COPY_FILES += \
     ${HOUDINI_PATH}/system/lib/arm/cpuinfo:system/lib/arm/cpuinfo \
     ${HOUDINI_PATH}/system/lib/arm/cpuinfo.neon:system/lib/arm/cpuinfo.neon \
 
+#Set CPU ABI
+ADDITIONAL_BUILD_PROPERTIES += ro.product.cpu.abi2=armeabi-v7a
+
 endif
