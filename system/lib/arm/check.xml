@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<filter>org.mozilla.firefox</filter>
+<filter>org.mozilla.firefox_beta</filter>
+<filter>com.good.android.gfe</filter>
+<filter>com.adobe.air</filter>
+<filter>com.UCMobile</filter>
 <neon>air.eti.uzzu.unalis</neon>
