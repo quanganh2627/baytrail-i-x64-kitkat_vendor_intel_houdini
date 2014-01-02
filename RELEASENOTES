@@ -2,20 +2,6 @@ Copyright (c) (2013), Intel Corporation.
 
 This Houdini binaries ("Software") is furnished under license and may only be used or copied in accordance with the terms of that license. No license, express or implied, by estoppel or otherwise, to any intellectual property rights is granted by this document. The Software is subject to change without notice, and should not be construed as a commitment by Intel Corporation to market, license, sell or support any product or technology. Unless otherwise provided for in the license under which this Software is provided, the Software is provided AS IS, with no warranties of any kind, express or implied. Except as expressly permitted by the Software license, neither Intel Corporation nor its suppliers assumes any responsibility or liability for any errors or inaccuracies that may appear herein. Except as expressly permitted by the Software license, no part of the Software may be reproduced, stored in a retrieval system, transmitted in any form,or distributed by any means without the express written consent of Intel Corporation.
 
-Dec-25-2013  RELEASE VERSION: Houdini 3.3.10.44095 Maintenance Release
-Bugs fixed:
-    159483(App: YY), 159755(App: TianTianFeiChe), 157532(App: Baidu Browser)
-Feature Enhancement:
-    Fixed one Houdini linker bug to pass the application "YY".
-    Improved Non-NDK API support to pass applications "TianTianFeiChe" and "Baidu Browser".
-
-Dec-6-2013  RELEASE VERSION: Houdini 3.3.9.44007 Maintenance Release
-Bugs fixed:
-    154348(App: Corn Quest), 156872(App: Hero)
-Feature Enhancement:
-    Added workaround to allow application's random stackflow bug.
-    Fixed a bug to support wechat game Hero.
-
 Nov-21-2013  RELEASE VERSION: Houdini 3.3.8.43942 Maintenance Release
 Bugs fixed:
     141604(App: Cheetah Browser), 148457(App: Mobile ISP Service), App: S Pen
