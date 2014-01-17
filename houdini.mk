@@ -57,6 +57,7 @@ PRODUCT_COPY_FILES += \
     ${HOUDINI_PATH}/arm/libpowermanager.so:system/lib/arm/libpowermanager.so \
     ${HOUDINI_PATH}/arm/libRS.so:system/lib/arm/libRS.so \
     ${HOUDINI_PATH}/arm/libRScpp.so:system/lib/arm/libRScpp.so \
+    ${HOUDINI_PATH}/arm/libRSDriver.so:system/lib/arm/libRSDriver.so \
     ${HOUDINI_PATH}/arm/libselinux.so:system/lib/arm/libselinux.so \
     ${HOUDINI_PATH}/arm/libskia.so:system/lib/arm/libskia.so \
     ${HOUDINI_PATH}/arm/libsonivox.so:system/lib/arm/libsonivox.so \
@@ -77,8 +78,18 @@ PRODUCT_COPY_FILES += \
     ${HOUDINI_PATH}/arm/libusbhost.so:system/lib/arm/libusbhost.so \
     ${HOUDINI_PATH}/arm/libutils.so:system/lib/arm/libutils.so \
     ${HOUDINI_PATH}/arm/libvorbisidec.so:system/lib/arm/libvorbisidec.so \
+    ${HOUDINI_PATH}/arm/libwebrtc_audio_coding.so:system/lib/arm/libwebrtc_audio_coding.so \
     ${HOUDINI_PATH}/arm/libwpa_client.so:system/lib/arm/libwpa_client.so \
     ${HOUDINI_PATH}/arm/libz.so:system/lib/arm/libz.so \
+    ${HOUDINI_PATH}/arm/libaudioflinger.so:system/lib/arm/libaudioflinger.so \
+    ${HOUDINI_PATH}/arm/libcommon_time_client.so:system/lib/arm/libcommon_time_client.so \
+    ${HOUDINI_PATH}/arm/libeffects.so:system/lib/arm/libeffects.so \
+    ${HOUDINI_PATH}/arm/libnbaio.so:system/lib/arm/libnbaio.so \
+    ${HOUDINI_PATH}/arm/libvideoeditor_core.so:system/lib/arm/libvideoeditor_core.so \
+    ${HOUDINI_PATH}/arm/libvideoeditor_jni.so:system/lib/arm/libvideoeditor_jni.so \
+    ${HOUDINI_PATH}/arm/libvideoeditor_osal.so:system/lib/arm/libvideoeditor_osal.so \
+    ${HOUDINI_PATH}/arm/libvideoeditorplayer.so:system/lib/arm/libvideoeditorplayer.so \
+    ${HOUDINI_PATH}/arm/libvideoeditor_videofilters.so:system/lib/arm/libvideoeditor_videofilters.so \
 
 #"Copying Houdini executables"
 PRODUCT_COPY_FILES += \
