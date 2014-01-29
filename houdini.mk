@@ -35,6 +35,7 @@ PRODUCT_COPY_FILES += \
     ${HOUDINI_PATH}/arm/libhardware_legacy.so:system/lib/arm/libhardware_legacy.so \
     ${HOUDINI_PATH}/arm/libhardware.so:system/lib/arm/libhardware.so \
     ${HOUDINI_PATH}/arm/libharfbuzz_ng.so:system/lib/arm/libharfbuzz_ng.so \
+    ${HOUDINI_PATH}/arm/libharfbuzz.so:system/lib/arm/libharfbuzz.so \
     ${HOUDINI_PATH}/arm/libhwui.so:system/lib/arm/libhwui.so \
     ${HOUDINI_PATH}/arm/libicui18n.so:system/lib/arm/libicui18n.so \
     ${HOUDINI_PATH}/arm/libicuuc.so:system/lib/arm/libicuuc.so \
