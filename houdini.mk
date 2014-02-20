@@ -6,13 +6,10 @@ houdini_prebuilt_done := $(wildcard $(houdini_prebuilt_stamp))
 ifneq ($(houdini_prebuilt_done),)
 INTEL_HOUDINI := true
 #Houdini
-PRODUCT_PACKAGES += libhoudini \
-    houdini \
-    enable_houdini \
-    disable_houdini \
+PRODUCT_PACKAGES += \
+    houdini_hook \
+    libhoudini_hook \
     check.xml \
-    cpuinfo \
-    cpuinfo.neon
 
 #houdini arm libraries
 
@@ -116,6 +113,7 @@ PRODUCT_COPY_FILES += \
     ${HOUDINI_PATH}/system/bin/houdini:system/bin/houdini \
     ${HOUDINI_PATH}/system/bin/enable_houdini:system/bin/enable_houdini \
     ${HOUDINI_PATH}/system/bin/disable_houdini:system/bin/disable_houdini \
+    $(HOUDINI_PATH)/system/lib/libhoudini.so:system/lib/libhoudini.so \
 
 #"Copying Houdini misc files"
 PRODUCT_COPY_FILES += \
