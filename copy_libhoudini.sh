@@ -38,5 +38,6 @@ cp -f --remove-destination ${HOUDINI_PATH}/arm/linker ${PRODUCT_OUT}/system/lib/
 
 echo "Copying Houdini misc files"
 cp -f --remove-destination ${HOUDINI_PATH}/system/lib/arm/check.xml ${PRODUCT_OUT}/system/lib/arm/
+cp -f --remove-destination ${HOUDINI_PATH}/system/lib/arm/.assets_lib_list ${PRODUCT_OUT}/system/lib/arm/
 cp -f --remove-destination ${HOUDINI_PATH}/system/lib/arm/cpuinfo ${PRODUCT_OUT}/system/lib/arm/
 cp -f --remove-destination ${HOUDINI_PATH}/system/lib/arm/cpuinfo.neon ${PRODUCT_OUT}/system/lib/arm/
