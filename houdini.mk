@@ -124,4 +124,6 @@ PRODUCT_COPY_FILES += \
 #Set CPU ABI
 ADDITIONAL_BUILD_PROPERTIES += ro.product.cpu.abi2=armeabi-v7a
 
+#memory layout
+ADDITIONAL_BUILD_PROPERTIES += ro.config.personality=compat_layout
 endif
