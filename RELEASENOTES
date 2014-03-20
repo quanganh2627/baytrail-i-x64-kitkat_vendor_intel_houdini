@@ -2,6 +2,14 @@ Copyright (c) (2013), Intel Corporation.
 
 This Houdini binaries ("Software") is furnished under license and may only be used or copied in accordance with the terms of that license. No license, express or implied, by estoppel or otherwise, to any intellectual property rights is granted by this document. The Software is subject to change without notice, and should not be construed as a commitment by Intel Corporation to market, license, sell or support any product or technology. Unless otherwise provided for in the license under which this Software is provided, the Software is provided AS IS, with no warranties of any kind, express or implied. Except as expressly permitted by the Software license, neither Intel Corporation nor its suppliers assumes any responsibility or liability for any errors or inaccuracies that may appear herein. Except as expressly permitted by the Software license, no part of the Software may be reproduced, stored in a retrieval system, transmitted in any form,or distributed by any means without the express written consent of Intel Corporation.
 
+Mar-19-2014  RELEASE VERSION: Houdini 4.0.2.44380 Maintenance Release
+Bugs fixed:
+    166145(App: PPTV), 175294(App: Star Wars Pinball), 173530(App: Face Unlock), 171857(App: The King of Fighters), 162594(App: QQ Browser)
+Feature enhancement:
+    Added big-endian support to pass the app "PPTV".
+    Fixed Houdini bug to pass the apps "Star Wars Pinball" and "Face Unlock".
+    Improved Non-NDK API support to pass the apps "The King of Firghters" and "QQ Browser".
+
 Feb-18-2014  RELEASE VERSION: Houdini 4.0.1.44235 Maintenance Release
 Bugs fixed:
     166388(App: ZhiWenShiBieQi, DuoRenZhaJinHua, DianTiTaoWang2, DanJiDouDiZhu, YiJianRootDaShi), 168212(App: QQ Buluo), 167113(App: SpongeBob Diner Dash), 160438(App: TTS), 147883(App: Monster Hunter)
