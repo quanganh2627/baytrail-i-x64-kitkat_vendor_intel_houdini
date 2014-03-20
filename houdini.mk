@@ -112,14 +112,28 @@ PRODUCT_COPY_FILES += \
     ${HOUDINI_PATH}/arm/libvideoeditor_osal.so:system/lib/arm/libvideoeditor_osal.so:intel_oblumg \
     ${HOUDINI_PATH}/arm/libvideoeditorplayer.so:system/lib/arm/libvideoeditorplayer.so:intel_oblumg \
     ${HOUDINI_PATH}/arm/libvideoeditor_videofilters.so:system/lib/arm/libvideoeditor_videofilters.so:intel_oblumg \
+    ${HOUDINI_PATH}/arm/libGLES_trace.so:system/lib/arm/libGLES_trace.so:intel_oblumg \
+    ${HOUDINI_PATH}/arm/libRSCpuRef.so:system/lib/arm/libRSCpuRef.so:intel_oblumg \
+    ${HOUDINI_PATH}/arm/libwilhelm.so:system/lib/arm/libwilhelm.so:intel_oblumg \
+    ${HOUDINI_PATH}/arm/libz_orig.so:system/lib/arm/libz_orig.so:intel_oblumg \
 
 
 #"Copying Houdini executables"
 PRODUCT_COPY_FILES += \
-    ${HOUDINI_PATH}/system/bin/houdini:system/bin/houdini:intel_oblumg \
     ${HOUDINI_PATH}/system/bin/enable_houdini:system/bin/enable_houdini:intel_oblumg \
     ${HOUDINI_PATH}/system/bin/disable_houdini:system/bin/disable_houdini:intel_oblumg \
+
+ifeq ($(TARGET_KERNEL_ARCH),x86_64)
+PRODUCT_COPY_FILES += \
+    ${HOUDINI_PATH}/system/bin/houdini_x64_32:system/bin/houdini:intel_oblumg \
+    $(HOUDINI_PATH)/system/lib/libhoudini_x64_32.so:system/lib/libhoudini.so:intel_oblumg \
+
+else
+PRODUCT_COPY_FILES += \
+    ${HOUDINI_PATH}/system/bin/houdini:system/bin/houdini:intel_oblumg \
     $(HOUDINI_PATH)/system/lib/libhoudini.so:system/lib/libhoudini.so:intel_oblumg \
+
+endif
 
 #"Copying Houdini misc files"
 PRODUCT_COPY_FILES += \
