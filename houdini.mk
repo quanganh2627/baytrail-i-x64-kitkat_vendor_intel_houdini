@@ -91,7 +91,7 @@ PRODUCT_COPY_FILES += \
     ${HOUDINI_PATH}/arm/libvideoeditor_osal.so:system/lib/arm/libvideoeditor_osal.so \
     ${HOUDINI_PATH}/arm/libvideoeditorplayer.so:system/lib/arm/libvideoeditorplayer.so \
     ${HOUDINI_PATH}/arm/libvideoeditor_videofilters.so:system/lib/arm/libvideoeditor_videofilters.so \
-    ${HOUDINI_PATH}/arm/libvideoeditor_videofilters.so:system/lib/arm/libemoji.so \
+    ${HOUDINI_PATH}/arm/libemoji.so:system/lib/arm/libemoji.so \
 
 #"Copying Houdini executables"
 PRODUCT_COPY_FILES += \
