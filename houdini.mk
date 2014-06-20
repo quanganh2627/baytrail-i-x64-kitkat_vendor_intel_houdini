@@ -15,7 +15,7 @@ INTEL_HOUDINI := true
 PRODUCT_PACKAGES += \
     houdini_hook \
     libhoudini_hook \
-    check.xml \
+    check.knobs \
 
 #houdini arm libraries
 
