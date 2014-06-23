@@ -5,7 +5,7 @@
 # and you or your company.
 
 #Houdini prebuilt
-HOUDINI_ARM_PREBUILTS_DIR := vendor/intel/houdini/arm
+HOUDINI_ARM_PREBUILTS_DIR := hardware/intel/houdini/arm
 houdini_prebuilt_stamp := $(HOUDINI_ARM_PREBUILTS_DIR)/stamp-prebuilt-done
 houdini_prebuilt_done := $(wildcard $(houdini_prebuilt_stamp))
 
@@ -20,7 +20,7 @@ PRODUCT_PACKAGES += \
 #houdini arm libraries
 
 ### Extra files needs to copy for houdini
-HOUDINI_PATH := vendor/intel/houdini
+HOUDINI_PATH := hardware/intel/houdini
 #"Copying Houdini arm libs"
 PRODUCT_COPY_FILES += \
     ${HOUDINI_PATH}/arm/linker:system/lib/arm/linker:intel_oblumg \
