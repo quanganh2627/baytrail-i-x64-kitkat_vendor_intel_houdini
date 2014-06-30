@@ -36,7 +36,7 @@ LOCAL_MODULE_CLASS := STATIC_LIBRARIES
 include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := check.xml
+LOCAL_MODULE := check.knobs
 LOCAL_MODULE_OWNER := intel_oblumg
 LOCAL_SRC_FILES := system/lib/arm/$(LOCAL_MODULE)
 LOCAL_MODULE_TAGS := optional
