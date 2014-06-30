@@ -92,6 +92,9 @@ PRODUCT_COPY_FILES += \
     ${HOUDINI_PATH}/arm/libvideoeditorplayer.so:system/lib/arm/libvideoeditorplayer.so \
     ${HOUDINI_PATH}/arm/libvideoeditor_videofilters.so:system/lib/arm/libvideoeditor_videofilters.so \
     ${HOUDINI_PATH}/arm/libemoji.so:system/lib/arm/libemoji.so \
+    ${HOUDINI_PATH}/arm/libGLES_trace.so:system/lib/arm/libGLES_trace.so \
+    ${HOUDINI_PATH}/arm/libRSCpuRef.so:system/lib/arm/libRSCpuRef.so \
+    ${HOUDINI_PATH}/arm/libwilhelm.so:system/lib/arm/libwilhelm.so \
 
 #"Copying Houdini executables"
 PRODUCT_COPY_FILES += \
