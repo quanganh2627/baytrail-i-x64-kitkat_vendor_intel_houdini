@@ -91,16 +91,28 @@ PRODUCT_COPY_FILES += \
     ${HOUDINI_PATH}/arm/libvideoeditor_osal.so:system/lib/arm/libvideoeditor_osal.so \
     ${HOUDINI_PATH}/arm/libvideoeditorplayer.so:system/lib/arm/libvideoeditorplayer.so \
     ${HOUDINI_PATH}/arm/libvideoeditor_videofilters.so:system/lib/arm/libvideoeditor_videofilters.so \
-    ${HOUDINI_PATH}/arm/libemoji.so:system/lib/arm/libemoji.so \
     ${HOUDINI_PATH}/arm/libGLES_trace.so:system/lib/arm/libGLES_trace.so \
     ${HOUDINI_PATH}/arm/libRSCpuRef.so:system/lib/arm/libRSCpuRef.so \
     ${HOUDINI_PATH}/arm/libwilhelm.so:system/lib/arm/libwilhelm.so \
+    ${HOUDINI_PATH}/arm/libz_orig.so:system/lib/arm/libz_orig.so \
+ 
 
 #"Copying Houdini executables"
 PRODUCT_COPY_FILES += \
-    ${HOUDINI_PATH}/system/bin/houdini:system/bin/houdini \
     ${HOUDINI_PATH}/system/bin/enable_houdini:system/bin/enable_houdini \
     ${HOUDINI_PATH}/system/bin/disable_houdini:system/bin/disable_houdini \
+
+
+ifeq ($(BOARD_USE_64BIT_KERNEL),true)
+PRODUCT_COPY_FILES += \
+    ${HOUDINI_PATH}/system/bin/houdini_x64_32:system/bin/houdini \
+
+else
+PRODUCT_COPY_FILES += \
+    ${HOUDINI_PATH}/system/bin/houdini:system/bin/houdini \
+
+endif
+
 
 #"Copying Houdini misc files"
 PRODUCT_COPY_FILES += \
