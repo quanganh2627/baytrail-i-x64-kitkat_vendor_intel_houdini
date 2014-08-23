@@ -2,6 +2,22 @@ Copyright (c) (2013), Intel Corporation.
 
 This Houdini binaries ("Software") is furnished under license and may only be used or copied in accordance with the terms of that license. No license, express or implied, by estoppel or otherwise, to any intellectual property rights is granted by this document. The Software is subject to change without notice, and should not be construed as a commitment by Intel Corporation to market, license, sell or support any product or technology. Unless otherwise provided for in the license under which this Software is provided, the Software is provided AS IS, with no warranties of any kind, express or implied. Except as expressly permitted by the Software license, neither Intel Corporation nor its suppliers assumes any responsibility or liability for any errors or inaccuracies that may appear herein. Except as expressly permitted by the Software license, no part of the Software may be reproduced, stored in a retrieval system, transmitted in any form,or distributed by any means without the express written consent of Intel Corporation.
 
+Aug-28-2014  RELEASE VERSION: Houdini 4.1.1a.45536 hot fix Release
+ Bugs fixed:
+    (APP: Facebook Messenger)
+ 1. Fix a bug in Houdini4.1.1 exposed in Facebook Messenger (11.0.0.10.14) Beta version
+
+Aug-22-2014  RELEASE VERSION: Houdini 4.1.1.45499 MR Release
+ Bugs fixed:
+   (APP: 开迅视频)  215537  216898  217404 217403 217407
+    192614(APP: MLB)  213930(APP: WWE)  201050(APP: Godzilla com.wb.goog.godzilla.strikezone)
+ 1. Reduce overhead and improve performance to support unusal behavior of the app which iteratively access every process's proc/map information.
+ 2. Provide a full solution to support multi_user apps.
+ 3. A regression introduced by Houdini 4.1.0 will be fixed, which was exposed in Houdini application test (开讯视频).
+    Some corner usage of non NDK API may be impacted by this regression.
+ 4. Add limited support for debugger API(MLB and WWE).
+ 5. Add workaround to meet apps’ requirement on ARM system libs(Godzilla).
+
 Jul-30-2014  RELEASE VERSION: Houdini 4.1.0a.45170 hot fix Release
 Bugs fixed:
     (APP: com.kascend.video-1.apk)

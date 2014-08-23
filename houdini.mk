@@ -95,6 +95,7 @@ PRODUCT_COPY_FILES += \
     ${HOUDINI_PATH}/arm/libRSCpuRef.so:system/lib/arm/libRSCpuRef.so \
     ${HOUDINI_PATH}/arm/libwilhelm.so:system/lib/arm/libwilhelm.so \
     ${HOUDINI_PATH}/arm/libz_orig.so:system/lib/arm/libz_orig.so \
+    ${HOUDINI_PATH}/arm/libsysutils.so:system/lib/arm/libsysutils.so \
  
 
 #"Copying Houdini executables"
