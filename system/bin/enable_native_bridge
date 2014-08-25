@@ -1,0 +1,47 @@
+#!/system/bin/sh
+
+# if you don't see the files 'register' and 'status' in /proc/sys/fs/binfmt_misc
+# then run the following command:
+# mount -t binfmt_misc none /proc/sys/fs/binfmt_misc
+
+# this is to add the supported binary formats via binfmt_misc
+
+native_bridge_exe=0
+native_bridge_dyn=0
+
+if [ ! -e /proc/sys/fs/binfmt_misc ]; then
+	modprobe binfmt_misc
+fi
+
+if [ ! -e /proc/sys/fs/binfmt_misc/register ]; then
+	mount -t binfmt_misc none /proc/sys/fs/binfmt_misc
+fi
+
+if [ -e /proc/sys/fs/binfmt_misc/register ]; then
+   # register Native Bridge for EXEC arm binaries
+   echo ':arm_exe:M::\\x7f\\x45\\x4c\\x46\\x01\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x28::/system/bin/houdini:' > /proc/sys/fs/binfmt_misc/register
+   if [ -e /proc/sys/fs/binfmt_misc/arm_exe ]; then
+       native_bridge_exe=1
+   fi
+   # register Native Bridge for DYN arm binaries
+   echo ':arm_dyn:M::\\x7f\\x45\\x4c\\x46\\x01\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x03\\x00\\x28::/system/bin/houdini:' > /proc/sys/fs/binfmt_misc/register
+   if [ -e /proc/sys/fs/binfmt_misc/arm_dyn ]; then
+       native_bridge_dyn=1
+   fi
+else
+	echo "No binfmt_misc support"
+fi
+
+if [ $native_bridge_exe -eq 1 ]; then
+   echo "native bridge exe enabled"
+else
+   echo "fail to native bridge exe !!!"
+fi
+
+if [ $native_bridge_dyn -eq 1 ]; then
+   echo "native bridge dyn enabled"
+else
+   echo "fail to native bridge dyn !!!"
+fi
+
+exit 0
