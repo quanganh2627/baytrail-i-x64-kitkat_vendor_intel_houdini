@@ -1,47 +1,41 @@
+
 # Copyright (C) 20[14] Intel Corporation.  All rights reserved.
 # Intel Confidential                                  RS-NDA # RS-8051151
 # This [file/library] contains Houdini confidential information of Intel Corporation
 # which is subject to a non-disclosure agreement between Intel Corporation
 # and you or your company.
 
-# file: vendor/intel/PREBUILT/SG/Android.mk
-#
-# This makefile is to generate the final version of the source
-# ISA libraries. It only does so if the prebuilt ARM libraries
-# were already copied to the libs_prebuilt folder. Otherwise it
-# does nothing.
-#
-
 LOCAL_PATH := $(call my-dir)
-HOUDINI_BASE_PATH := $(LOCAL_PATH)
 
-ifeq ($(INTEL_HOUDINI),true)
+ifeq ($(WITH_NATIVE_BRIDGE),true)
 
-# Houdini hook libraries for different module
-
-include $(CLEAR_VARS)
-LOCAL_MODULE := libhoudini_hook
-LOCAL_MODULE_OWNER := intel_oblumg
-LOCAL_SRC_FILES := hooks/libhoudini_hook.cpp
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := STATIC_LIBRARIES
-include $(BUILD_STATIC_LIBRARY)
+ifneq ($(REBUILD_NATIVE_BRIDGE_HELPER),true)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := houdini_hook
-LOCAL_MODULE_OWNER := intel_oblumg
-LOCAL_SRC_FILES := hooks/houdini_hook.c
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := STATIC_LIBRARIES
-include $(BUILD_STATIC_LIBRARY)
+LOCAL_MODULE := cat
 
-include $(CLEAR_VARS)
-LOCAL_MODULE := check.knobs
-LOCAL_MODULE_OWNER := intel_oblumg
-LOCAL_SRC_FILES := system/lib/arm/$(LOCAL_MODULE)
+# For 64 Bit Kernel
+ifeq ($(TARGET_IS_64_BIT),true)
+LOCAL_SRC_FILES := prebuilt/cat_x86_64
+# For 32 Bit Kernel
+else
+LOCAL_SRC_FILES := prebuilt/cat_x86
+# End of TARGET_IS_64_BIT
+endif
+
+LOCAL_MODULE_CLASS := EXECUTABLES
+LOCAL_MODULE_OWNER := intel
 LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := ETC
-LOCAL_MODULE_PATH := $(TARGET_OUT)/lib/arm
+LOCAL_MODULE_PATH := $(TARGET_OUT)/bin
 include $(BUILD_PREBUILT)
 
+# Rebuild Native Bridge Helper
+else
+
+-include $(LOCAL_PATH)/nativebridgehelper/nativebridgehelper.mk
+
+# End of REBUILD_NATIVE_BRIDGE_HELPER
+endif
+
+# End of WITH_NATIVE_BRIDGE
 endif
