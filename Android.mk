@@ -26,7 +26,7 @@ LOCAL_MODULE_SUFFIX := $(TARGET_SHLIB_SUFFIX)
 OVERRIDE_BUILT_MODULE_PATH := $(TARGET_OUT_INTERMEDIATE_LIBRARIES)
 include $(BUILD_SYSTEM)/dynamic_binary.mk
 $(linked_module):
-	$(HOUDINI_BASE_PATH)/copy_libhoudini.sh $(HOUDINI_BASE_PATH) $(PRODUCT_OUT)
+	$(HOUDINI_BASE_PATH)/copy_libhoudini.sh $(HOUDINI_BASE_PATH) $(PRODUCT_OUT) $(BOARD_USE_64BIT_KERNEL)
 
 # Houdini hook libraries for different module
 
