@@ -181,7 +181,7 @@ PRODUCT_COPY_FILES += $(NATIVE_BRIDGE_BIN_PATH)/enable_native_bridge:/system/bin
                       $(NATIVE_BRIDGE_BIN_PATH)/disable_native_bridge:/system/bin/disable_native_bridge:intel
 
 # Native Bridge Lib Name
-ADDITIONAL_BUILD_PROPERTIES += dalvik.vm.native.bridge=$(NATIVE_BRIDGE_LIB_NAME)
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.dalvik.vm.native.bridge=$(NATIVE_BRIDGE_LIB_NAME)
 
 # Enabling Native Bridge By Default
 ADDITIONAL_BUILD_PROPERTIES += persist.enable.native.bridge=true
