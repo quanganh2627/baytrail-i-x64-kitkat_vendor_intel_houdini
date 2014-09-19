@@ -55,10 +55,10 @@ ifeq ($(TARGET_SUPPORTS_64_BIT_APPS),true)
   TARGET_CPU_ABI_LIST_64_BIT := $(TARGET_CPU_ABI) $(TARGET_CPU_ABI2) $(NATIVE_BRIDGE_ABI_LIST_64_BIT)
 
   # Copying Native Bridge 64 Bit Lib
-  PRODUCT_COPY_FILES += $(NATIVE_BRIDGE_LIB64_PATH)/libhoudini_z.so:/system/lib64/$(NATIVE_BRIDGE_LIB_NAME):intel
+  # PRODUCT_COPY_FILES += $(NATIVE_BRIDGE_LIB64_PATH)/libhoudini_z.so:/system/lib64/$(NATIVE_BRIDGE_LIB_NAME):intel
 
   # Copying Native Bridge Target 64 Bit Libs
-  PRODUCT_COPY_FILES += $(foreach LIB64, $(notdir $(wildcard $(NATIVE_BRIDGE_TARGET_LIB64_PATH)/*)), \
+  # PRODUCT_COPY_FILES += $(foreach LIB64, $(notdir $(wildcard $(NATIVE_BRIDGE_TARGET_LIB64_PATH)/*)), \
       $(NATIVE_BRIDGE_TARGET_LIB64_PATH)/$(LIB64):$(NATIVE_BRIDGE_TARGET_IMG_LIB64_PATH)/$(LIB64):intel)
 
   # Reset Dex Code Instruction Set
