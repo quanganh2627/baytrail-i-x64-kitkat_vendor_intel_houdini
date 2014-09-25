@@ -1,11 +1,3 @@
-/*
- * Copyright (C) 20[14] Intel Corporation.  All rights reserved.
- * Intel Confidential                                  RS-NDA # RS-8051151
- * This [file/library] contains Houdini confidential information of Intel Corporation
- * which is subject to a non-disclosure agreement between Intel Corporation
- * and you or your company.
- */
-
 #include <dlfcn.h>
 #include <cutils/properties.h>
 #include <cutils/log.h>
@@ -169,21 +161,22 @@ void dvmHookPlatformInvoke(void* pEnv, void* clazz, int argInfo, int argc,
         gHoudini->dvm2hdNativeMethodHelper(false, func, retType, pReturn, dstArg,
             types, (const void**)values);
     else
-        ALOGE("Houdini has not been initialized!");
+        LOGE("Houdini has not been initialized!");
 }
 
 
 /******************************************************************************
  * For hook dlopen, dlsym and ABI2 func execution
  *****************************************************************************/
-static bool hookCheckABI2Header(const char *filename) {
+static bool isABI2LibValid(const char *filename) {
     int fd = -1;
     unsigned char header[64];
     Elf32_Ehdr *hdr;
 
-    if ((fd = open(filename, O_RDONLY)) == -1)
-        return true; // open fail, probablly the file isn't exist, return true to keep align with bionic linker's implementation.
-                     // The linker will check libname first instead of its existence
+    if ((fd = open(filename, O_RDONLY)) == -1) {
+        LOGE("open file %s failed: %s", filename, strerror(errno));
+        return false;
+    }
 
     if (lseek(fd, 0, SEEK_SET) < 0)
         goto fail;
@@ -212,8 +205,8 @@ void* hookDlopen(const char *filename, int flag, bool* useHoudini) {
     if (handle != NULL)
         return handle;
 
-    //Houdini will not handle non-ARM libraries.
-    if (!hookCheckABI2Header(filename)) {
+    //Houdini will only handle valid ARM libraries.
+    if (!isABI2LibValid(filename)) {
         return NULL;
     }
 
@@ -231,7 +224,7 @@ void* hookDlsym(bool useHoudini, void* handle, const char* symbol) {
         if (gHoudini)
             return gHoudini->dvm2hdDlsym(handle, symbol);
         else {
-            ALOGE("Houdini has not been initialized!");
+            LOGE("Houdini has not been initialized!");
             return NULL;
         }
     } else
@@ -249,7 +242,7 @@ int hookJniOnload(bool useHoudini, void* func, void* jniVm, void* arg) {
             gHoudini->dvm2hdNativeMethodHelper(true, func, 'I', (void*)&version,
                 2, NULL, argv);
         else
-            ALOGE("Houdini has not been initialized!");
+            LOGE("Houdini has not been initialized!");
         return version;
     } else {
         return (*(OnLoadFunc)func)(jniVm, NULL);
@@ -266,7 +259,7 @@ void hookCreateActivity(bool useHoudini, void* createActivityFunc, void* activit
             gHoudini->androidrt2hdCreateActivity(createActivityFunc, activity,
                 houdiniActivity, savedState, savedStateSize);
         else
-            ALOGE("Houdini has not been initialized!");
+            LOGE("Houdini has not been initialized!");
     } else {
         (*(CreateActivityFunc)createActivityFunc)(activity, savedState, savedStateSize);
     }

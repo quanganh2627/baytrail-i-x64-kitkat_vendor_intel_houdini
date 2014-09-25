@@ -1,9 +1,3 @@
-# Copyright (C) 20[14] Intel Corporation.  All rights reserved.
-# Intel Confidential                                  RS-NDA # RS-8051151
-# This [file/library] contains Houdini confidential information of Intel Corporation
-# which is subject to a non-disclosure agreement between Intel Corporation
-# and you or your company.
-
 # file: vendor/intel/PREBUILT/SG/Android.mk
 #
 # This makefile is to generate the final version of the source
@@ -17,31 +11,39 @@ HOUDINI_BASE_PATH := $(LOCAL_PATH)
 
 ifeq ($(INTEL_HOUDINI),true)
 
+include $(CLEAR_VARS)
+
+product_path := $(TARGET_OUT_SHARED_LIBRARIES)
+
+# Houdini prebuilt binaries
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libhoudini
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_SUFFIX := $(TARGET_SHLIB_SUFFIX)
+
+OVERRIDE_BUILT_MODULE_PATH := $(TARGET_OUT_INTERMEDIATE_LIBRARIES)
+include $(BUILD_SYSTEM)/dynamic_binary.mk
+$(linked_module):
+	$(HOUDINI_BASE_PATH)/copy_libhoudini.sh $(HOUDINI_BASE_PATH) $(PRODUCT_OUT) $(BOARD_USE_64BIT_KERNEL)
+
 # Houdini hook libraries for different module
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := libhoudini_hook
-LOCAL_MODULE_OWNER := intel_oblumg
 LOCAL_SRC_FILES := hooks/libhoudini_hook.cpp
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_CLASS := STATIC_LIBRARIES
+LOCAL_C_INCLUDES :=
 include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := houdini_hook
-LOCAL_MODULE_OWNER := intel_oblumg
 LOCAL_SRC_FILES := hooks/houdini_hook.c
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_CLASS := STATIC_LIBRARIES
+LOCAL_C_INCLUDES :=
 include $(BUILD_STATIC_LIBRARY)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE := check.knobs
-LOCAL_MODULE_OWNER := intel_oblumg
-LOCAL_SRC_FILES := system/lib/arm/$(LOCAL_MODULE)
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := ETC
-LOCAL_MODULE_PATH := $(TARGET_OUT)/lib/arm
-include $(BUILD_PREBUILT)
 
 endif

@@ -1,0 +1,215 @@
+Copyright (c) (2013), Intel Corporation.
+
+This Houdini binaries ("Software") is furnished under license and may only be used or copied in accordance with the terms of that license. No license, express or implied, by estoppel or otherwise, to any intellectual property rights is granted by this document. The Software is subject to change without notice, and should not be construed as a commitment by Intel Corporation to market, license, sell or support any product or technology. Unless otherwise provided for in the license under which this Software is provided, the Software is provided AS IS, with no warranties of any kind, express or implied. Except as expressly permitted by the Software license, neither Intel Corporation nor its suppliers assumes any responsibility or liability for any errors or inaccuracies that may appear herein. Except as expressly permitted by the Software license, no part of the Software may be reproduced, stored in a retrieval system, transmitted in any form,or distributed by any means without the express written consent of Intel Corporation.
+
+Spe-12-2014  RELEASE VERSION: Houdini 4.1.1b.45721 hot fix Release
+   1. Fix an hidden issue exposed by new Google Hangouts.
+
+Aug-28-2014  RELEASE VERSION: Houdini 4.1.1a.45536 hot fix Release
+ Bugs fixed:
+    (APP: Facebook Messenger)
+ 1. Fix a bug in Houdini4.1.1 exposed in Facebook Messenger (11.0.0.10.14) Beta version
+
+Aug-22-2014  RELEASE VERSION: Houdini 4.1.1.45499 MR Release
+ Bugs fixed:
+   (APP: 开迅视频)  215537  216898  217404 217403 217407
+    192614(APP: MLB)  213930(APP: WWE)  201050(APP: Godzilla com.wb.goog.godzilla.strikezone)
+ 1. Reduce overhead and improve performance to support unusal behavior of the app which iteratively access every process's proc/map information.
+ 2. Provide a full solution to support multi_user apps.
+ 3. A regression introduced by Houdini 4.1.0 will be fixed, which was exposed in Houdini application test (开讯视频).
+    Some corner usage of non NDK API may be impacted by this regression.
+ 4. Add limited support for debugger API(MLB and WWE).
+ 5. Add workaround to meet apps’ requirement on ARM system libs(Godzilla).
+
+Jul-30-2014  RELEASE VERSION: Houdini 4.1.0a.45170 hot fix Release
+Bugs fixed:
+    (APP: com.kascend.video-1.apk)
+
+Jul-17-2014  RELEASE VERSION: Houdini 4.1.0.45074 Golden Release 
+Houdini 4.1 is a major release for Android 4.4.3 and Android 4.4.4:
+   1. Provide specail optimization on 64-bit kernel.
+   2. Provide general performance optimization to improve user experience.
+   3. Since from Houdini 4.1, there are two builds: 
+      Houdini 4.1.0_x (32-bit kernel image will use it), Houdini 4.1.0_y(64-bit kernel image will use it). 
+      The selection of different build is transparent to system (it is completed in image build phase).
+ 
+June-30-2014  RELEASE VERSION: Houdini 4.0.6.44921 Maintenance Release
+Bugs fixed:
+    202810(APP: tictoc), 202694(APP: smart walle)
+Feature enhancement:
+    Rebase ARM library to AOSP 4.4.3
+
+June-12-2014  RELEASE VERSION: Houdini 4.0.5.44806 Maintenance Release
+Bugs fixed:
+    189891(APP: UC browser), 197862(APP: Kaspersky), 199240(APP: Snapchat), 192232(APP: DJMAX)
+Feature enhancement:
+    Big endian support to pass Sohu TV, PPTV    
+
+May-06-2014  RELEASE VERSION: Houdini 4.0.4.44607 Maintenance Release
+Bugs fixed:
+    185851(App: CarrotFantasy), 183869(App: Mobile Video)
+Feature enhancement:
+    Fixed Houdini bug to pass the apps "CarrotFantasy" and "Mobile Video".
+
+Mar-19-2014  RELEASE VERSION: Houdini 4.0.2.44380 Maintenance Release
+Bugs fixed:
+    166145(App: PPTV), 175294(App: Star Wars Pinball), 173530(App: Face Unlock), 171857(App: The King of Fighters), 162594(App: QQ Browser)
+Feature enhancement:
+    Added big-endian support to pass the app "PPTV".
+    Fixed Houdini bug to pass the apps "Star Wars Pinball" and "Face Unlock".
+    Improved Non-NDK API support to pass the apps "The King of Firghters" and "QQ Browser".
+
+Feb-18-2014  RELEASE VERSION: Houdini 4.0.1.44235 Maintenance Release
+Bugs fixed:
+    166388(App: ZhiWenShiBieQi, DuoRenZhaJinHua, DianTiTaoWang2, DanJiDouDiZhu, YiJianRootDaShi), 168212(App: QQ Buluo), 167113(App: SpongeBob Diner Dash), 160438(App: TTS), 147883(App: Monster Hunter)
+Feature enhancement:
+    Fixed Houdini bugs to pass the apps SpongeBob Diner Dash, Monster Hunter and QQ Buluo.
+    Added support for apps with 3rd party x86 libs used for anti-reverse engineering to pass the apps ZhiWenShiBieQi etc.
+
+Jan-29-2014  RELEASE VERSION: Houdini 4.0.0.44205 Golden Release
+Feature Enhancement:
+    Fully support Android 4.4.2, including OpenGL ES 3.0 and other 4.4.2 specific features.
+    Improve app launch time and steady state performance.
+    Improve non-NDK API support.
+    Various bug fixes.
+Bugs fixed:
+    163186(Mobile Video), 167566(KanTuCaiChengYu, GuanYinLingQian, HaoXueBa), 162878(Super Mario)
+
+Jan-15-2014  RELEASE VERSION: Houdini 4.0.0.44147 Beta-2 Release
+Bugs fixed:
+    160932(DoPool TV), 160974(YY), 161341(Grisly Manor), 163693(TempleRun 2)
+Feature Enhancement:
+    Rebased ARM library to AOSP 4.4.2. 
+    Improved Non-NDK API support to pass the applications "YY", "Grisly Manor" and "DoPool TV".
+    Fixed a Houdini bug to pass the application "TempleRun 2".
+
+Dec-18-2013  RELEASE VERSION: Houdini 4.0.0.44045 Beta Release
+Bugs fixed:
+    156069(GMS TTS, talkback), 156191(Birzzle), 157858(Kaixun video), 158083(Plant vs. Zombies 2)
+Feature Enhancement:
+    Fixed Houdini linker bugs to pass application "Kaixun video", "Birzzle", "Plant vs. Zombies 2".
+    Added new non-NDK library request by GMS TTS severice.
+    Improved Non-NDK API support.
+
+Nov-27-2013  RELEASE VERSION: Houdini 4.0.0.43972 Alpha Release
+Bugs fixed:
+    154070, 154613, 153018
+Feature Enhancement:
+    Rebased ARM library to AOSP 4.4_r1
+
+Oct-08-2013  RELEASE VERSION: Houdini 3.4.0.43818 Golden Release Candidate
+Bugs fixed:
+    139071
+Feature Enhancement:
+    Fixed standalone loader to align with android 4.3 loader's new feature.
+    Improved Non-NDK API support.
+
+Sep-11-2013  RELEASE VERSION: Houdini 3.4.0.43727 WW37 weekly Release
+Bugs fixed:
+    136988
+Feature Enhancement:
+    Improved Non-NDK API support
+
+Sep-3-2013  RELEASE VERSION: Houdini 3.4.0.43714 WW36 weekly Release
+Bugs fixed:
+    131280, 133755
+Feature Enhancement:
+    Rebased ARM library to AOSP 4.3_r2.1
+
+Aug-12-2013  RELEASE VERSION: Houdini 3.3.4.43568 Maintenance Release
+Bugs fixed:
+    125533(App: YiDaiZongShi), 125986(App: Qvod)
+Feature Enhancement:
+    Improved application YiDaiZongShi's performance.
+    Added limited support of non-NDK library libdbus.so to pass application Qvod.
+    Special FILE callback handling to pass application Greed for glory and Line Camera.
+
+July-17-2013  RELEASE VERSION: Houdini 3.3.3.43422 Maintenance Release
+Bugs fixed:
+    118268(App: wechat 4.5.1)
+Feature Enhancement:
+    Fixed a Houdini bug to let __sinit API always initialize x86 bionic data structure to pass application wechat. 
+    Improved Houdini to support Linux kernel optimization for XEN regarding segment selector usage. 
+
+June-28-2013  RELEASE VERSION: Houdini 3.3.2.43371 Maintenance Release
+Bugs fixed:
+    116452(Korean App: Card battle 3 kingdoms), 114992(App: Heroes of Orader & Chaos)
+Feature Enhancement:
+    Rebuilt ARM library libcrypto.so with correct build patch to pass Korean application card battle 3 kingdoms.
+    Fixed a Houdini bug to pass application Heroes of Orader & Chaos.
+    Improved performance for some unity3D applications' sound issue.
+
+May-9-2013  RELEASE VERSION: Houdini 3.3.1.43195 Maintenance Release
+Bugs fixed:
+    103328(Korean App: bubble), 103338(Korean App: Daum tvPot), 92735(App: Super Q Music Elf LWP)
+Feature Enhancement:
+    Improved non-NDK API (FreeType related) handling in libskia.so to support Korean App bubble and Daum tvPot.
+    Enabled application "Super Q Music Elf LWP" by handling specific function pointer usage in non-NDK library libandroid_runtime.so.
+
+Apr-12-2013  RELEASE VERSION: Houdini 3.3.0.43143 Golden Release
+Feature Enhancement:
+    Improved non-NDK API handling in libskia.so to better support QQ Browser.
+    Fixed a memory accessing permission bug exposed by the introducing of PAE support in R4.2 image. Application Enigmatic Collector's, Nemo's Reef and netflix passed after the fix.
+
+Mar-21-2013  RELEASE VERSION: Houdini 3.3.0.43074 WW12 weekly Release
+Bugs fixed:
+    88345, 89466, 91840
+Feature Enhancement:
+    Rebased ARM library to AOSP 4.2.2_r1
+    Improved non-NDK API support to pass application "Space Hunter"(BZ88345), "QQ Browser"(BZ91840)
+    Added support for a special usage of global variable in native code to pass application "SG:deadzone"(BZ89466)
+    Updated ARM libraries to turn off combine-duplicated-entries feature that will improve Houdini virtual gate performance.
+
+Mar-5-2013  RELEASE VERSION: Houdini 3.2.0.43024 Golden Release
+Bugs fixed:
+    74557, 78472, 88190, 88313, 88334, 90202, 90205
+Feature Enhancement:
+    Fixed two optimization bugs to make application "TigerKnows"(BZ78472), "Sogou Map"(BZ88190), "Dead Space"(BZ90202) and "FishingJoy2"(BZ90205) pass.
+    Fixed one Houdini linker bug to pass application "biohazard4"(BZ88334).
+    Made JNI down call parameter passing implementation compatible with ARM platform. Application "mapbar"(BZ88313) depends on this ARM-specific implementation. 
+    Improved non-NDK API support to pass application "Candy Crush Saga"(BZ74557).
+    Improved libm performance.
+
+Jan-18-2013  RELEASE VERSION: Houdini 3.2.0.42925 WW02 weekly release
+Bugs fixed:
+    78511, 80676
+Feature Enhancement:
+    Added non-NDK ARM lib libsync.so to /system/lib/arm/. Application Mint(BZ78511) and SongPop(BZ80676) can pass after adding this lib.
+    Changed neon white list to black list in check.xml, neon tag added to default cpuinfo
+
+Dec-27-2012  RELEASE VERSION: Houdini 3.2.0.42890 WW52 weekly release
+Bugs fixed:
+    76906, 76964, 77020
+Feature Enhancement:
+    Rebased ARM library to AOSP 4.2.1_r1
+    Houdini correctly handles NEON instructions, but does not indicate support for NEON via getCpuFeatures or equivalent APIs.
+    Fixed parameter passing bug during native activity API handling. Application Beach Buggy Blitz (BZ68250) and Riptide GP (BZ68052) passed after this bug fix.
+    Bypassed library ABI check in libhoudini hook for non-exist files. This is to keep align with bionic linker's implementation. After bypass, Asphalt 7 (BZ68249) can pass as ARM phone behavior.
+
+Nov-8-2012  RELEASE VERSION: Houdini 3.0.1.42758 Maintenance Release
+Bugs fixed:
+    65802
+Feature Enhancement:
+    Rebased ARM library to 4.1.2_r1
+    Fixed the TPlayer resume play issue by supporting its non-NDK symbols
+
+Oct-17-2012 RELEASE VERSION: Houdini 3.0.0.42689 Golden Release Candidate
+Bugs fixed:
+    59952
+Feature Enhancement:
+    Partially supported RT signal
+    Improved Non-NDK API support
+    Refined arm cpuinfo
+    
+Version: houdini 3.0.0 WW38 weekly release
+Bugs fixed:
+    52142
+Feature Enhancement:
+    Updated arm lib to AOSP 4.1.1_r4
+    Supported for new system calls in JB
+    Improved arm libm performance
+    Enabled captive AIR applications
+    Improved non-ndk library support for JB
+    Performance improvement
+    Houdini runtime instruction update
+
