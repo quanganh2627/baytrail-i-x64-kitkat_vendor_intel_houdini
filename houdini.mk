@@ -19,6 +19,9 @@ NATIVE_BRIDGE_EXECUTABLE_NAME := houdini
 # Native Bridge Path
 NATIVE_BRIDGE_PATH := vendor/intel/houdini
 
+# Native Bridge Registration Path
+NATIVE_BRIDGE_BINFMT_MISC_PATH := $(NATIVE_BRIDGE_PATH)/system/etc/binfmt_misc
+
 # Native Bridge Bin Path
 NATIVE_BRIDGE_BIN_PATH := $(NATIVE_BRIDGE_PATH)/system/bin
 
@@ -133,9 +136,12 @@ else
 # End of TARGET_KERNEL_ARCH
 endif
 
-# Copying Native Bridge Scripts
-PRODUCT_COPY_FILES += $(NATIVE_BRIDGE_BIN_PATH)/enable_native_bridge:/system/bin/enable_native_bridge:intel \
-                      $(NATIVE_BRIDGE_BIN_PATH)/disable_native_bridge:/system/bin/disable_native_bridge:intel
+# Copying BINFMT_MISC Interpreter Registration Files
+PRODUCT_COPY_FILES += $(foreach FMT, $(notdir $(wildcard $(NATIVE_BRIDGE_BINFMT_MISC_PATH)/*)), \
+    $(NATIVE_BRIDGE_BINFMT_MISC_PATH)/$(FMT):/system/etc/binfmt_misc/$(FMT):intel)
+
+# Enable Native Bridge Executable by default
+ADDITIONAL_BUILD_PROPERTIES += ro.enable.native.bridge.exec=1
 
 # Native Bridge Lib Name
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.dalvik.vm.native.bridge=$(NATIVE_BRIDGE_LIB_NAME)
