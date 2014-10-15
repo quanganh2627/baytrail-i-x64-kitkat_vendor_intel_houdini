@@ -104,12 +104,14 @@ PRODUCT_COPY_FILES += \
     ${HOUDINI_PATH}/system/bin/disable_houdini:system/bin/disable_houdini \
 
 
-ifeq ($(BOARD_USE_64BIT_KERNEL),true)
+ifeq ($(TARGET_KERNEL_ARCH),x86_64)
 PRODUCT_COPY_FILES += \
+    $(HOUDINI_PATH)/system/lib/libhoudini_x64_32.so:system/lib/libhoudini.so \
     ${HOUDINI_PATH}/system/bin/houdini_x64_32:system/bin/houdini \
 
 else
 PRODUCT_COPY_FILES += \
+    $(HOUDINI_PATH)/system/lib/libhoudini.so:system/lib/libhoudini.so \
     ${HOUDINI_PATH}/system/bin/houdini:system/bin/houdini \
 
 endif
