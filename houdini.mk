@@ -38,10 +38,10 @@ NATIVE_BRIDGE_TARGET_IMG_LIB_PATH := /system/lib/arm
 NATIVE_BRIDGE_LIB64_PATH := $(NATIVE_BRIDGE_PATH)/system/lib64
 
 # Native Bridge Target 64 Bit Lib Path
-NATIVE_BRIDGE_TARGET_LIB64_PATH := $(NATIVE_BRIDGE_LIB64_PATH)/arm
+NATIVE_BRIDGE_TARGET_LIB64_PATH := $(NATIVE_BRIDGE_LIB64_PATH)/arm64
 
 # Native Bridge Target Image 64 Bit Lib Path
-NATIVE_BRIDGE_TARGET_IMG_LIB64_PATH := /system/lib64/arm
+NATIVE_BRIDGE_TARGET_IMG_LIB64_PATH := /system/lib64/arm64
 
 # Native Bridge ABI List
 NATIVE_BRIDGE_ABI_LIST_32_BIT := armeabi
@@ -49,8 +49,14 @@ NATIVE_BRIDGE_ABI_LIST_32_BIT := armeabi
 # Native Bridge ABI 64 Bit List
 NATIVE_BRIDGE_ABI_LIST_64_BIT :=
 
+# Native Bridge for 64 Bit Kernel
+NATIVE_BRIDGE_64_BIT_KERNEL := false
+
 # Support 64 Bit Apps
 ifeq ($(TARGET_SUPPORTS_64_BIT_APPS),true)
+
+  # Set Native Bridge with 64 Bit Kernel
+  NATIVE_BRIDGE_64_BIT_KERNEL := true
 
   # Set 64 Bit ABI List
   TARGET_CPU_ABI ?= x86_64
@@ -77,7 +83,7 @@ ifeq ($(TARGET_SUPPORTS_64_BIT_APPS),true)
 
     # Copying Native Bridge Lib
     PRODUCT_COPY_FILES += $(NATIVE_BRIDGE_LIB_PATH)/libhoudini_y.so:/system/lib/$(NATIVE_BRIDGE_LIB_NAME):intel
-	
+
     # Copying Native Bridge Target Libs
     PRODUCT_COPY_FILES += $(foreach LIB, $(notdir $(wildcard $(NATIVE_BRIDGE_TARGET_LIB_PATH)/*)), \
         $(NATIVE_BRIDGE_TARGET_LIB_PATH)/$(LIB):$(NATIVE_BRIDGE_TARGET_IMG_LIB_PATH)/$(LIB):intel)
@@ -91,13 +97,20 @@ ifeq ($(TARGET_SUPPORTS_64_BIT_APPS),true)
 # Support 32 Bit Apps Only
 else
 
+  # Set Native Bridge with 64 Bit Kernel
+  ifeq ($(TARGET_KERNEL_ARCH),x86_64)
+    NATIVE_BRIDGE_64_BIT_KERNEL := true
+  else
+    NATIVE_BRIDGE_64_BIT_KERNEL := $(BOARD_USE_64BIT_KERNEL)
+  endif
+
   # Set 32 Bit ABI List
   TARGET_CPU_ABI ?= x86
   TARGET_CPU_ABI2 ?= armeabi-v7a
   TARGET_CPU_ABI_LIST_32_BIT := $(TARGET_CPU_ABI) $(TARGET_CPU_ABI2) $(NATIVE_BRIDGE_ABI_LIST_32_BIT)
 
   # Supoort 64 Bit Kernel
-  ifeq ($(TARGET_KERNEL_ARCH),x86_64)
+  ifeq ($(NATIVE_BRIDGE_64_BIT_KERNEL),true)
 
     # Copying Native Bridge 64 Bit Lib
     PRODUCT_COPY_FILES += $(NATIVE_BRIDGE_LIB_PATH)/libhoudini_y.so:/system/lib/$(NATIVE_BRIDGE_LIB_NAME):intel
@@ -108,7 +121,7 @@ else
     # Copying Native Bridge 32 Bit Lib
     PRODUCT_COPY_FILES += $(NATIVE_BRIDGE_LIB_PATH)/libhoudini_x.so:/system/lib/$(NATIVE_BRIDGE_LIB_NAME):intel
 
-  # End of TARGET_KERNEL_ARCH
+  # End of NATIVE_BRIDGE_64_BIT_KERNEL
   endif
 
   # Copying Native Bridge Target Libs
@@ -122,7 +135,7 @@ else
 endif
 
 # Support 64 Bit Kernel
-ifeq ($(TARGET_KERNEL_ARCH),x86_64)
+ifeq ($(NATIVE_BRIDGE_64_BIT_KERNEL),true)
 
   # Copying Native Bridge 64 Bit Executables
   PRODUCT_COPY_FILES += $(NATIVE_BRIDGE_BIN_PATH)/houdini_y:/system/bin/$(NATIVE_BRIDGE_EXECUTABLE_NAME):intel
@@ -133,7 +146,7 @@ else
   # Copying Native Bridge 32 Bit Executables
   PRODUCT_COPY_FILES += $(NATIVE_BRIDGE_BIN_PATH)/houdini_x:/system/bin/$(NATIVE_BRIDGE_EXECUTABLE_NAME):intel
 
-# End of TARGET_KERNEL_ARCH
+# End of NATIVE_BRIDGE_64_BIT_KERNEL
 endif
 
 # Copying BINFMT_MISC Interpreter Registration Files
