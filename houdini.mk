@@ -1,5 +1,12 @@
 ### Extra files needs to copy for houdini
 HOUDINI_PATH := hardware/intel/houdini
+
+PRODUCT_PACKAGES += \
+    houdini_hook \
+    libhoudini_hook \
+    check.knobs \
+INTEL_HOUDINI := true
+
 #"Copying Houdini arm libs"
 PRODUCT_COPY_FILES += \
     ${HOUDINI_PATH}/arm/linker:system/lib/arm/linker \
