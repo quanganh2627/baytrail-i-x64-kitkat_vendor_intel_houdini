@@ -116,6 +116,7 @@ PRODUCT_COPY_FILES += \
     ${HOUDINI_PATH}/arm/libRSCpuRef.so:system/lib/arm/libRSCpuRef.so:intel_oblumg \
     ${HOUDINI_PATH}/arm/libwilhelm.so:system/lib/arm/libwilhelm.so:intel_oblumg \
     ${HOUDINI_PATH}/arm/libz_orig.so:system/lib/arm/libz_orig.so:intel_oblumg \
+    ${HOUDINI_PATH}/arm/libsysutils.so:system/lib/arm/libsysutils.so:intel_oblumg \
 
 
 #"Copying Houdini executables"
