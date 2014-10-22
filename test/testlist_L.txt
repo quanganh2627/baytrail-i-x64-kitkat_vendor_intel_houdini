@@ -1,0 +1,6 @@
+cpu_info#CpuInfoTest-debug.apk#air.eti.uzzu.unalis#CpuInfoTest#Houdini_CPU_Info_Test#Please check the patch [Cpuinfo hook], it may be missed or its assumption is broken!
+standalone_app#StandaloneAppTest-debug.apk#com.intel.ubt.standaloneapp#StandaloneAppTest#Houdini_Standalone_App_Test#Please check the patch [MISC platform changes], it may be missed or its assumption is broken!
+os_arch#OsArchTest-debug.apk#com.intel.ubt.osarchtest#OsArchTest#Houdini_Os.Arch_Test#Please check the patch [Workaround for checking os.arch], it may be missed or its assumption is broken!
+ARM_app_CPU_ABI#CpuAbiTest-debug.apk#com.intel.ubt.cpuabi#CpuAbiTest#Houdini_CPU_ABI_Test#Please check the patch [Workaround for checking primary CPU_ABI], it may be missed or its assumption is broken!
+pure_java_app_CPU_ABI#PureCpuAbiTest-debug.apk#com.intel.ubt.purecpuabi#PureCpuAbiTest#Pure_Java_CPU_ABI_Test#Please check the patch [Package manager hook], it may be missed or its assumption is broken!
+CHECK_HOUDINI_VERSION#cpuinfo-native.apk#com.intel.ubt.cpuinfo#android.app.NativeActivity#+++++++#Please check Houdini version [64-bit kernel:Houdini_x64_32; 32-bit kernel:Houdini_x86]
