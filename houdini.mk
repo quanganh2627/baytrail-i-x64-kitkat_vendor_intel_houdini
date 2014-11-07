@@ -31,8 +31,14 @@ NATIVE_BRIDGE_LIB_PATH := $(NATIVE_BRIDGE_PATH)/system/lib
 # Native Bridge Target Lib Path
 NATIVE_BRIDGE_TARGET_LIB_PATH := $(NATIVE_BRIDGE_LIB_PATH)/arm
 
+# Native Bridge NB Lib Path
+NATIVE_BRIDGE_NB_LIB_PATH := $(NATIVE_BRIDGE_TARGET_LIB_PATH)/nb
+
 # Native Bridge Target Image Lib Path
 NATIVE_BRIDGE_TARGET_IMG_LIB_PATH := /system/lib/arm
+
+# Native Bridge NB Image Lib Path
+NATIVE_BRIDGE_IMG_NB_LIB_PATH := $(NATIVE_BRIDGE_TARGET_IMG_LIB_PATH)/nb
 
 # Native Bridge 64 Bit Lib Path
 NATIVE_BRIDGE_LIB64_PATH := $(NATIVE_BRIDGE_PATH)/system/lib64
@@ -40,8 +46,14 @@ NATIVE_BRIDGE_LIB64_PATH := $(NATIVE_BRIDGE_PATH)/system/lib64
 # Native Bridge Target 64 Bit Lib Path
 NATIVE_BRIDGE_TARGET_LIB64_PATH := $(NATIVE_BRIDGE_LIB64_PATH)/arm64
 
+# Native Bridge 64 Bit NB Lib Path
+NATIVE_BRIDGE_NB_LIB64_PATH := $(NATIVE_BRIDGE_TARGET_LIB64_PATH)/nb
+
 # Native Bridge Target Image 64 Bit Lib Path
 NATIVE_BRIDGE_TARGET_IMG_LIB64_PATH := /system/lib64/arm64
+
+# Native Bridge NB Image 64 Bit Lib Path
+NATIVE_BRIDGE_IMG_NB_LIB64_PATH := $(NATIVE_BRIDGE_TARGET_IMG_LIB64_PATH)/nb
 
 # Native Bridge ABI List
 NATIVE_BRIDGE_ABI_LIST_32_BIT := armeabi
@@ -67,8 +79,12 @@ ifeq ($(TARGET_SUPPORTS_64_BIT_APPS),true)
   # PRODUCT_COPY_FILES += $(NATIVE_BRIDGE_LIB64_PATH)/libhoudini_z.so:/system/lib64/$(NATIVE_BRIDGE_LIB_NAME):intel
 
   # Copying Native Bridge Target 64 Bit Libs
-  # PRODUCT_COPY_FILES += $(foreach LIB64, $(notdir $(wildcard $(NATIVE_BRIDGE_TARGET_LIB64_PATH)/*)), \
+  # PRODUCT_COPY_FILES += $(foreach LIB64, $(filter-out nb, $(notdir $(wildcard $(NATIVE_BRIDGE_TARGET_LIB64_PATH)/*))), \
       $(NATIVE_BRIDGE_TARGET_LIB64_PATH)/$(LIB64):$(NATIVE_BRIDGE_TARGET_IMG_LIB64_PATH)/$(LIB64):intel)
+
+  # Copying Native Bridge NB 64 Bit Libs
+  # PRODUCT_COPY_FILES += $(foreach NB64, $(notdir $(wildcard $(NATIVE_BRIDGE_NB_LIB64_PATH)/*)), \
+      $(NATIVE_BRIDGE_NB_LIB64_PATH)/$(NB64):$(NATIVE_BRIDGE_IMG_NB_LIB64_PATH)/$(NB64):intel)
 
   # Reset Dex Code Instruction Set
   ADDITIONAL_BUILD_PROPERTIES += ro.dalvik.vm.isa.arm64=x86_64
@@ -85,8 +101,12 @@ ifeq ($(TARGET_SUPPORTS_64_BIT_APPS),true)
     PRODUCT_COPY_FILES += $(NATIVE_BRIDGE_LIB_PATH)/libhoudini_y.so:/system/lib/$(NATIVE_BRIDGE_LIB_NAME):intel
 
     # Copying Native Bridge Target Libs
-    PRODUCT_COPY_FILES += $(foreach LIB, $(notdir $(wildcard $(NATIVE_BRIDGE_TARGET_LIB_PATH)/*)), \
+    PRODUCT_COPY_FILES += $(foreach LIB, $(filter-out nb, $(notdir $(wildcard $(NATIVE_BRIDGE_TARGET_LIB_PATH)/*))), \
         $(NATIVE_BRIDGE_TARGET_LIB_PATH)/$(LIB):$(NATIVE_BRIDGE_TARGET_IMG_LIB_PATH)/$(LIB):intel)
+
+    # Copying Native Bridge NB Libs
+    PRODUCT_COPY_FILES += $(foreach NB, $(notdir $(wildcard $(NATIVE_BRIDGE_NB_LIB_PATH)/*)), \
+        $(NATIVE_BRIDGE_NB_LIB_PATH)/$(NB):$(NATIVE_BRIDGE_IMG_NB_LIB_PATH)/$(NB):intel)
 
     # Reset Dex Code Instruction Set
     ADDITIONAL_BUILD_PROPERTIES += ro.dalvik.vm.isa.arm=x86
@@ -125,8 +145,12 @@ else
   endif
 
   # Copying Native Bridge Target Libs
-  PRODUCT_COPY_FILES += $(foreach LIB, $(notdir $(wildcard $(NATIVE_BRIDGE_TARGET_LIB_PATH)/*)), \
+  PRODUCT_COPY_FILES += $(foreach LIB, $(filter-out nb, $(notdir $(wildcard $(NATIVE_BRIDGE_TARGET_LIB_PATH)/*))), \
       $(NATIVE_BRIDGE_TARGET_LIB_PATH)/$(LIB):$(NATIVE_BRIDGE_TARGET_IMG_LIB_PATH)/$(LIB):intel)
+
+  # Copying Native Bridge NB Libs
+  PRODUCT_COPY_FILES += $(foreach NB, $(notdir $(wildcard $(NATIVE_BRIDGE_NB_LIB_PATH)/*)), \
+      $(NATIVE_BRIDGE_NB_LIB_PATH)/$(NB):$(NATIVE_BRIDGE_IMG_NB_LIB_PATH)/$(NB):intel)
 
   # Reset Dex Code Instruction Set
   ADDITIONAL_BUILD_PROPERTIES += ro.dalvik.vm.isa.arm=x86

@@ -22,4 +22,4 @@ This is the Houdini feature to enable Intel device to execute applications compi
 (say ARM).
 
 To ensure the Houdini feature is bulit well onto the device with android-L, run these tests:
-        check_houdini.sh L <device_name>
+        check_houdini.sh L <device_serial_number>
