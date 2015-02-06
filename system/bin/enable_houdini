@@ -6,7 +6,8 @@
 
 # this is to add the supported binary formats via binfmt_misc
 
-houdini_bin=0
+houdini_exe=0
+houdini_dyn=0
 
 if [ ! -e /proc/sys/fs/binfmt_misc ]; then
 	modprobe binfmt_misc
@@ -18,19 +19,25 @@ fi
 
 if [ -e /proc/sys/fs/binfmt_misc/register ]; then
 	# register Houdini for arm binaries
-	echo ':arm:M::\\x7f\\x45\\x4c\\x46\\x01\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x28::/system/bin/houdini:' > /proc/sys/fs/binfmt_misc/register
-	if [ -e /proc/sys/fs/binfmt_misc/arm ]; then
-		houdini_bin=1
-	fi
+    echo ':arm_exe:M::\\x7f\\x45\\x4c\\x46\\x01\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x28::/system/bin/houdini:' > /proc/sys/fs/binfmt_misc/register
+    if [ -e /proc/sys/fs/binfmt_misc/arm_exe ]; then
+        houdini_exe=1
+    fi
+    echo ':arm_dyn:M::\\x7f\\x45\\x4c\\x46\\x01\\x01\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x03\\x00\\x28::/system/bin/houdini:' > /proc/sys/fs/binfmt_misc/register
+    if [ -e /proc/sys/fs/binfmt_misc/arm_dyn ]; then
+        houdini_dyn=1
+    fi
 else
 	echo "No binfmt_misc support"
 fi
 
-if [ $houdini_bin -eq 0 ]; then
-	echo "houdini enabling failed !!!"
+if [ $houdini_exe -ne 1 ]; then
+	echo "houdini_exe enabling failed !!!"
 fi
-if [ $houdini_bin -eq 1 ]; then
-	echo "houdini enabled"
+if [ $houdini_dyn -ne 1 ]; then
+	echo "houdini_dyn enabling failed !!!"
 fi
+
+echo "houdini enabled"
 
 exit 0
