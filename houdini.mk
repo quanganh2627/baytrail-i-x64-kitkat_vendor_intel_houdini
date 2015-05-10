@@ -62,7 +62,7 @@ endif
 ifeq ($(NB_32BIT_ENABLE),true)
   PRODUCT_COPY_FILES += $(NB_PATH)/$(NB_BIN_PATH)/houdini_$(NB_32BIT_SUFFIX):$(NB_BIN_PATH)/$(NB_EXE_NAME):intel
   PRODUCT_COPY_FILES += $(NB_PATH)/$(NB_LIB_PATH)/libhoudini_$(NB_32BIT_SUFFIX).so:$(NB_LIB_PATH)/$(NB_LIB_NAME):intel
-  PRODUCT_COPY_FILES += $(foreach LIB, $(filter-out nb, $(notdir $(wildcard $(NB_PATH)/$(NB_ARM_PATH)/*))), \
+  PRODUCT_COPY_FILES += $(foreach LIB, $(filter-out nb liblog_legacy.so, $(notdir $(wildcard $(NB_PATH)/$(NB_ARM_PATH)/*))), \
       $(NB_PATH)/$(NB_ARM_PATH)/$(LIB):$(NB_ARM_PATH)/$(LIB):intel)
   PRODUCT_COPY_FILES += $(foreach NB, $(notdir $(wildcard $(NB_PATH)/$(NB_NBLIB_PATH)/*)), \
       $(NB_PATH)/$(NB_NBLIB_PATH)/$(NB):$(NB_NBLIB_PATH)/$(NB):intel)
@@ -72,5 +72,12 @@ ifeq ($(NB_32BIT_ENABLE),true)
 endif
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.dalvik.vm.native.bridge=$(NB_LIB_NAME)
+
+define notify_houdini_logger
+  $(if $(filter true, $(NB_32BIT_ENABLE)),\
+    $(if $(filter false, $(TARGET_USES_LOGD)),\
+      $(eval PRODUCT_COPY_FILES := $(subst $(NB_PATH)/$(NB_ARM_PATH)/liblog.so,\
+        $(NB_PATH)/$(NB_ARM_PATH)/liblog_legacy.so, $(PRODUCT_COPY_FILES)))))
+endef
 
 endif
